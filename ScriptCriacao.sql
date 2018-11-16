@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente` (
   `Data_nascimento` DATE NOT NULL,
   `Rua` VARCHAR(45) NULL,
   `Codigo_postal` VARCHAR(45) NULL,
-  `Telemovel` VARCHAR(45) NULL,
+  `Telemovel` CHAR(9) NOT NULL,
   `Email` VARCHAR(45) NULL,
   PRIMARY KEY (`Id_cliente`))
 ENGINE = InnoDB;
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Professor` (
   `Rua` VARCHAR(45) NULL,
   `Codigo_postal` VARCHAR(45) NULL,
   `Data_nascimento` DATE NOT NULL,
-  `Telemovel` VARCHAR(45) NULL,
-  `Email` VARCHAR(45) NULL,
+  `Telemovel` CHAR(9) NULL,
+  `Email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`Id_professor`))
 ENGINE = InnoDB;
 
@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Plano` (
   `Id_professor` INT NOT NULL,
   `Id_cliente` INT NOT NULL,
   PRIMARY KEY (`Id_plano`),
-  INDEX `fk_Plano_Professor1_idx` (`Id_professor` ASC) VISIBLE,
-  INDEX `fk_Plano_Cliente1_idx` (`Id_cliente` ASC) VISIBLE,
+  INDEX `fk_Plano_Professor1_idx` (`Id_professor` ASC),
+  INDEX `fk_Plano_Cliente1_idx` (`Id_cliente` ASC),
   CONSTRAINT `fk_Plano_Professor1`
     FOREIGN KEY (`Id_professor`)
     REFERENCES `ginasio`.`Professor` (`Id_professor`)
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Plano` (
     FOREIGN KEY (`Id_cliente`)
     REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -74,18 +74,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ginasio`.`Atividade_Fitness` (
   `Id_atividade` INT NOT NULL,
-  `Nr_participantes` VARCHAR(45) NOT NULL,
+  `Nr_participantes` INT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
   `Duracao` TIME NOT NULL,
   `Sala` INT NOT NULL,
   `Id_professor` INT NOT NULL,
   PRIMARY KEY (`Id_atividade`),
-  INDEX `fk_Atividade_Fitness_Professor1_idx` (`Id_professor` ASC) VISIBLE,
+  INDEX `fk_Atividade_Fitness_Professor1_idx` (`Id_professor` ASC),
   CONSTRAINT `fk_Atividade_Fitness_Professor1`
     FOREIGN KEY (`Id_professor`)
     REFERENCES `ginasio`.`Professor` (`Id_professor`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -98,12 +98,12 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Maquina` (
   `Quantidade` INT NOT NULL,
   `Id_atividade` INT NOT NULL,
   PRIMARY KEY (`Id_maquina`),
-  INDEX `fk_Máquina_Atividade_Fitness1_idx` (`Id_atividade` ASC) VISIBLE,
+  INDEX `fk_Máquina_Atividade_Fitness1_idx` (`Id_atividade` ASC),
   CONSTRAINT `fk_Máquina_Atividade_Fitness1`
     FOREIGN KEY (`Id_atividade`)
     REFERENCES `ginasio`.`Atividade_Fitness` (`Id_atividade`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -115,12 +115,12 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Limitacao_Fisica` (
   `Nome` VARCHAR(45) NOT NULL,
   `Id_cliente` INT NOT NULL,
   PRIMARY KEY (`Id_Limitacao`, `Id_cliente`),
-  INDEX `fk_Limitação_Física_Cliente1_idx` (`Id_cliente` ASC) VISIBLE,
+  INDEX `fk_Limitação_Física_Cliente1_idx` (`Id_cliente` ASC),
   CONSTRAINT `fk_Limitação_Física_Cliente1`
     FOREIGN KEY (`Id_cliente`)
     REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -132,18 +132,18 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Plano_Atividade_Fitness` (
   `Id_plano` INT NOT NULL,
   `Id_atividade` INT NOT NULL,
   PRIMARY KEY (`Id_plano`, `Id_atividade`),
-  INDEX `fk_Plano_has_Atividade_Fitness_Atividade_Fitness1_idx` (`Id_atividade` ASC) VISIBLE,
-  INDEX `fk_Plano_has_Atividade_Fitness_Plano_idx` (`Id_plano` ASC) VISIBLE,
+  INDEX `fk_Plano_has_Atividade_Fitness_Atividade_Fitness1_idx` (`Id_atividade` ASC),
+  INDEX `fk_Plano_has_Atividade_Fitness_Plano_idx` (`Id_plano` ASC),
   CONSTRAINT `fk_Plano_has_Atividade_Fitness_Plano`
     FOREIGN KEY (`Id_plano`)
     REFERENCES `ginasio`.`Plano` (`Id_plano`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Plano_has_Atividade_Fitness_Atividade_Fitness1`
     FOREIGN KEY (`Id_atividade`)
     REFERENCES `ginasio`.`Atividade_Fitness` (`Id_atividade`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
