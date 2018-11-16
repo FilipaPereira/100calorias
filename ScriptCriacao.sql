@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Professor` (
   `Rua` VARCHAR(45) NULL,
   `Codigo_postal` VARCHAR(45) NULL,
   `Data_nascimento` DATE NOT NULL,
-  `Telemovel` CHAR(9) NULL,
-  `Email` VARCHAR(45) NOT NULL,
+  `Telemovel` CHAR(9) NOT NULL,
+  `Email` VARCHAR(45) NULL,
   PRIMARY KEY (`Id_professor`))
 ENGINE = InnoDB;
 
