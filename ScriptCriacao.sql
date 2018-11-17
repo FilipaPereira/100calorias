@@ -18,7 +18,7 @@ USE `ginasio` ;
 -- Table `ginasio`.`Cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente` (
-  `Id_cliente` INT NOT NULL,
+  `Id_cliente` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `Data_nascimento` DATE NOT NULL,
   `Rua` VARCHAR(45) NULL,
@@ -33,13 +33,13 @@ ENGINE = InnoDB;
 -- Table `ginasio`.`Professor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ginasio`.`Professor` (
-  `Id_professor` INT NOT NULL,
+  `Id_professor` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `Rua` VARCHAR(45) NULL,
   `Codigo_postal` VARCHAR(45) NULL,
   `Data_nascimento` DATE NOT NULL,
-  `Telemovel` CHAR(9) NOT NULL,
-  `Email` VARCHAR(45) NULL,
+  `Telemovel` CHAR(9) NULL,
+  `Email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`Id_professor`))
 ENGINE = InnoDB;
 
@@ -48,7 +48,7 @@ ENGINE = InnoDB;
 -- Table `ginasio`.`Plano`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ginasio`.`Plano` (
-  `Id_plano` INT NOT NULL,
+  `Id_plano` INT NOT NULL AUTO_INCREMENT,
   `Preco` DOUBLE NOT NULL,
   `Data_inicio` DATE NOT NULL,
   `Id_professor` INT NOT NULL,
@@ -73,7 +73,7 @@ ENGINE = InnoDB;
 -- Table `ginasio`.`Atividade_Fitness`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ginasio`.`Atividade_Fitness` (
-  `Id_atividade` INT NOT NULL,
+  `Id_atividade` INT NOT NULL AUTO_INCREMENT,
   `Nr_participantes` INT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
   `Duracao` TIME NOT NULL,
@@ -93,7 +93,7 @@ ENGINE = InnoDB;
 -- Table `ginasio`.`Maquina`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ginasio`.`Maquina` (
-  `Id_maquina` INT NOT NULL,
+  `Id_maquina` INT NOT NULL AUTO_INCREMENT,
   `Tipo` VARCHAR(45) NOT NULL,
   `Quantidade` INT NOT NULL,
   `Id_atividade` INT NOT NULL,
