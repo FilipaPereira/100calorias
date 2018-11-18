@@ -1,4 +1,4 @@
-INSERT INTO cliente
+INSERT INTO Cliente
 	(Nome, Data_nascimento, Rua, Codigo_postal, Telemovel, Email)
     VALUES
     ('Ana Maria', '1980-02-13', 'Rua da Capela', '4700-800', '932343333', 'ana@gmail.com'),
@@ -32,7 +32,7 @@ INSERT INTO cliente
     ('Rodrigo Moura', '1998-07-28', 'Rua do Salitre', '4700-229','937180781','rodrigo28moura@gmail.com'),
     ('Estér Rodrigues', '1974-11-24', 'Praçeta do Vilar', '4700-789','968152634','rodriguester24@gmail.com');
     
-INSERT INTO limitacao_fisica
+INSERT INTO Limitacao_Fisica
 	(Id_limitacao, Nome, Id_cliente)
     VALUES
     (1, 'Insuficiencia cardiaca', '1'),
@@ -43,7 +43,7 @@ INSERT INTO limitacao_fisica
     (6, 'Osteoperose', '8'),
     (7, 'Lesão meniscal', '10');
     
-INSERT INTO professor
+INSERT INTO Professor
 	(Nome, Data_nascimento, Rua, Codigo_postal, Telemovel, Email)
     VALUES
     ('Joana Antunes', '2000-02-13', 'Rua da Cruz', '4700-880', '916060454', 'joana@gmail.com'),
@@ -56,7 +56,7 @@ INSERT INTO professor
     ('Raquel Chaves', '1992-03-19', 'Rua de Trás', '4700-734', '967222514', 'raquel@gmail.com'),
 	('Tiago Freitas', '1993-06-22', 'Rua das Flores', '4702-603', '962542361', 'tiago@gmail.com');
     
-INSERT INTO atividade_fitness
+INSERT INTO Atividade_Fitness
 	(Nr_participantes, Nome, Duracao, Sala, Id_professor)
     VALUES
     (20, 'Run', 45, 1, 1),
@@ -70,7 +70,7 @@ INSERT INTO atividade_fitness
     (25, 'Body Combat', 40, 3, 7),
     (20, 'Hiit', 45, 5, 8);
     
-INSERT INTO maquina
+INSERT INTO Maquina
 	(Tipo, Quantidade)
     VALUES
     ('Passadeira', 20),
@@ -84,7 +84,7 @@ INSERT INTO maquina
     ('Kettlebell', 20),    
     ('Argolas', 16);
     
-INSERT INTO atividade_fitness_maquina
+INSERT INTO Atividade_Fitness_Maquina
 	(Nr_maquinas, Id_atividade, Id_maquina)
     VALUES
     (15,1,1),
@@ -98,7 +98,7 @@ INSERT INTO atividade_fitness_maquina
     (15,6,9),
     (15,6,10);
     
-INSERT INTO plano 
+INSERT INTO Plano 
 	(Preco, Data_inicio, Id_professor, Id_cliente)
     VALUES
     (30, '2018-01-01', 1, 1),
@@ -137,7 +137,7 @@ INSERT INTO plano
     (44, '2018-03-11', 6, 7),
     (28, '2018-09-09', 2, 18);
     
-INSERT INTO plano_atividade_fitness
+INSERT INTO Plano_Atividade_Fitness
 	(Nr_aulas, Id_plano, Id_atividade)
     VALUES
     (15, 1, 1),
