@@ -31,7 +31,9 @@ DELIMITER $$
 CREATE VIEW view_plano
 AS
 	SELECT P.Id_plano AS Id_Plano, P.preco AS Preco, P.data_inicio AS Data_Inicio,
-	P.Id_professor AS Professor, P.Id_cliente AS Cliente FROM Plano AS P
+	PR.Nome AS Professor, C.Nome AS Cliente FROM Plano AS P
+    INNER JOIN Professor AS PR ON PR.Id_professor = P.Id_professor
+    INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
 $$
 DELIMITER ;
     
