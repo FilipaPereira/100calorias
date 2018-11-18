@@ -37,3 +37,22 @@ CREATE PROCEDURE inserir_cliente(IN nome VARCHAR(45), IN datanascimento DATE, IN
         
 END $$  
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS inserir_plano;
+
+DELIMITER $$
+CREATE PROCEDURE inserir_plano(IN preco DOUBLE, IN datainicio DATE, IN id_professor INT, 
+									IN id_cliente INT)
+		BEGIN
+		Declare erro Bool default 0;
+		declare continue handler for SQLEXCEPTION set erro = 1; 
+        start transaction;
+		INSERT INTO Plano (Preco, Data_inicio, Id_professor, Id_cliente)
+				VALUE (preco, datainicio, id_professor, id_cliente);
+        	if erro then ROLLBACK;
+    else commit;
+    
+    END IF;
+        
+END $$  
+DELIMITER ;
