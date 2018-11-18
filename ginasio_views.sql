@@ -1,3 +1,16 @@
+-- VIEW informações das máquinas utilizadas em cada atividade, bem como a quantidade disponível
+DROP VIEW IF EXISTS view_maquinas;
+
+DELIMITER $$
+CREATE VIEW view_maquinas
+AS
+	SELECT A.Nome, M.Tipo, M.Quantidade FROM maquina AS M
+    INNER JOIN atividade_fitness AS A ON A.Id_atividade = M.Id_atividade;
+$$
+DELIMITER ;
+    
+SELECT * FROM view_maquinas;
+
 -- VIEW limitações físicas de cada aluno 
 DROP VIEW IF EXISTS view_limitacao_fisica;
 
