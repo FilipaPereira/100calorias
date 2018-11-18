@@ -71,18 +71,32 @@ INSERT INTO atividade_fitness
     (20, 'Hiit', 45, 5, 8);
     
 INSERT INTO maquina
-	(Tipo, Quantidade, Id_atividade)
+	(Tipo, Quantidade)
     VALUES
-    ('Passadeira', 20, 1),
-    ('Bicicleta', 25, 2),
-    ('Step', 10, 3),
-    ('Halteres', 10, 4),
-	('Bola de Pilates', 10, 5),
-    ('Cordas', 12, 10),
-    ('Mini-trampolim', 15,8),
-    ('Pesos', 20, 7),
-    ('Kettlebell', 20, 6),    
-    ('Argolas', 16,6);
+    ('Passadeira', 20),
+    ('Bicicleta', 25),
+    ('Step', 15),
+    ('Halteres', 20),
+	('Bola de Pilates', 15),
+    ('Cordas', 15),
+    ('Mini-trampolim', 15),
+    ('Pesos', 20),
+    ('Kettlebell', 20),    
+    ('Argolas', 16);
+    
+INSERT INTO atividade_fitness_maquina
+	(Nr_maquinas, Id_atividade, Id_maquina)
+    VALUES
+    (15,1,1),
+    (20,2,2),
+    (10,3,3),
+    (10,4,4),
+    (10,5,5),
+    (10,10,6),
+    (15,8,7),
+    (15,7,8),
+    (15,6,9),
+    (15,6,10);
     
 INSERT INTO plano 
 	(Preco, Data_inicio, Id_professor, Id_cliente)
