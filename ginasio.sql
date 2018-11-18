@@ -90,14 +90,14 @@ CALL planos_professor ('Andre Gonçalves');
 -- Nomes e contactos dos alunos que frequentam certa atividade
 DROP PROCEDURE IF EXISTS alunos_atividade
 DELIMITER $$
-CREATE PROCEDURE alunos_atividade (id_atividade INT) 
+CREATE PROCEDURE alunos_atividade (nome_atividade VARCHAR(45)) 
 BEGIN
 SELECT C.Nome, C.Email, C.Telemovel FROM Atividade_Fitness AS A
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_atividade = A.Id_atividade
 INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano
 INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
-WHERE A.Id_atividade = id_atividade;
+WHERE A.Nome = nome_atividade;
 END $$
 DELIMITER ;
 
-CALL alunos_atividade(2);
+CALL alunos_atividade('Cycling');
