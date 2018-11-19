@@ -44,9 +44,9 @@ DROP VIEW IF EXISTS view_atividades;
 DELIMITER $$
 CREATE VIEW view_atividades
 AS
-	SELECT A.Nr_participantes AS Numero, A.Nome AS Nome_atividade,
+	SELECT A.Nr_participantes AS NumeroParticipantes, A.Nome AS Atividade,
     A.Duracao AS Duracao, A.Sala AS Sala FROM Atividade_Fitness AS A
-    INNER JOIN Professor AS P ON P.Id_professor = A.Id_prodessor
+    INNER JOIN Professor AS P ON P.Id_professor = A.Id_professor
 $$
 DELIMITER ;
     

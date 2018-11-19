@@ -47,6 +47,15 @@ GROUP BY P.Id_professor
 ORDER BY Nr_planos DESC
 LIMIT 1;
 
+-- Reconhecer o professor que lecionou mais atividades
+
+-- Conhecer o número de clientes inscritos numa atividade fitness
+
+-- Atividade fitness mais frequentada por um aluno
+
+-- Tipo e quantidade de maquinas em cada atividade
+
+
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
 SELECT sum(PA.Nr_aulas) AS Nr_aulas, C.Nome FROM Plano_Atividade_Fitness AS PA
 INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano

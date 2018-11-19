@@ -33,15 +33,15 @@ INSERT INTO Cliente
     ('Estér Rodrigues', '1974-11-24', 'Praçeta do Vilar', '4700-789','968152634','rodriguester24@gmail.com');
     
 INSERT INTO Limitacao_Fisica
-	(Id_limitacao, Nome, Id_cliente)
+	(Nome, Id_cliente)
     VALUES
-    (1, 'Insuficiencia cardiaca', '1'),
-    (2, 'Paraplegico', '2'),
-    (3, 'Tendinite', '4'),
-    (4, 'Hérnea cervical', '5'),
-    (5, 'Rompimento da cartilagem','7'),
-    (6, 'Osteoperose', '8'),
-    (7, 'Lesão meniscal', '10');
+    ( 'Insuficiencia cardiaca', '1'),
+    ( 'Paraplegico', '2'),
+    ( 'Tendinite', '4'),
+    ( 'Hérnea cervical', '5'),
+    ( 'Rompimento da cartilagem','7'),
+    ( 'Osteoperose', '8'),
+    ( 'Lesão meniscal', '10');
     
 INSERT INTO Professor
 	(Nome, Data_nascimento, Rua, Codigo_postal, Telemovel, Email)
@@ -59,16 +59,16 @@ INSERT INTO Professor
 INSERT INTO Atividade_Fitness
 	(Nr_participantes, Nome, Duracao, Sala, Id_professor)
     VALUES
-    (20, 'Run', 45, 1, 1),
-    (25, 'Cycling', 40, 2, 2),
-    (10, 'Step', 45, 3, 3),
-    (10, 'Core', 40, 4, 4),
-	(10, 'Pilates', 45, 5, 3),
-    (15, 'Crossfit', 40, 6, 5),
-    (20, 'Body Pump', 45, 2, 9),
-    (10, 'Powerjump', 50, 4, 6),
-    (25, 'Body Combat', 40, 3, 7),
-    (20, 'Hiit', 45, 5, 8);
+    (20, 'Run', 4500, 1, 1),
+    (25, 'Cycling', 4000, 2, 2),
+    (10, 'Step', 4500, 3, 3),
+    (10, 'Core', 4000, 4, 4),
+	(10, 'Pilates', 4500, 5, 3),
+    (15, 'Crossfit', 4000, 6, 5),
+    (20, 'Body Pump', 4500, 2, 9),
+    (10, 'Powerjump', 5000, 4, 6),
+    (25, 'Body Combat', 4000, 3, 7),
+    (20, 'Hiit', 4500, 5, 8);
     
 INSERT INTO Maquina
 	(Tipo, Quantidade)
@@ -148,14 +148,13 @@ INSERT INTO Plano_Atividade_Fitness
     (12, 5, 3),
     (7, 10, 1),
     (10, 6, 4),
-    (12, 5, 6),
+    (12, 5, 7),
     (5, 6, 7),
     (15, 7, 8),
     (10, 8, 9),
     (14, 9, 10),
     (14, 28, 10),
     (12, 10, 5),
-    (14, 36, 1),
     (4, 33, 7),
     (10, 29, 2),
     (15, 31, 4),
@@ -184,9 +183,5 @@ INSERT INTO Plano_Atividade_Fitness
     (4, 25, 8),
     (6, 27, 7);
     
-    
-    
-    
-    
-    
+
     
