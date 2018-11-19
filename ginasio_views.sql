@@ -24,6 +24,34 @@ DELIMITER ;
     
 SELECT * FROM view_limitacao_fisica;
 
+-- VIEW alunos
+DROP VIEW IF EXISTS view_alunos;
+
+DELIMITER $$
+CREATE VIEW view_alunos
+AS
+	SELECT C.Nome AS Nome, C.Data_nascimento AS Data, C.Telemovel AS Telemovel, 
+	C.Rua AS Rua, C.Codigo_postal AS Codigo, C.Email AS Email FROM Cliente AS C
+$$
+DELIMITER ;
+    
+SELECT * FROM view_alunos;
+
+-- VIEW atividades
+
+DROP VIEW IF EXISTS view_atividades;
+
+DELIMITER $$
+CREATE VIEW view_atividades
+AS
+	SELECT A.Nr_participantes AS Numero, A.Nome AS Nome_atividade,
+    A.Duracao AS Duracao, A.Sala AS Sala FROM Atividade_Fitness AS A
+    INNER JOIN Professor AS P ON P.Id_professor = A.Id_prodessor
+$$
+DELIMITER ;
+    
+SELECT * FROM view_atividades;
+
 -- VIEW planos
 DROP VIEW IF EXISTS view_plano;
 
