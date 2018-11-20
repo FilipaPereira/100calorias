@@ -37,7 +37,15 @@ INSERT INTO Cliente
     ('Frederico Costa', '2000-03-16', 'Rua do Salitre', '4700-229','923445889','frederico-costa64@gmail.com'),
     ('João Capa', '1970-05-23', 'Rua da Laje', '4700-782','967336889','jota12capa@gmail.com'),
     ('Hugo Ballesteros', '1998-07-28', 'Rua do Salitre', '4700-229','937180781','jota_ballestero@gmail.com'),
-    ('Marco Paulo', '1979-11-18', 'Rua do Souto', '4700-225','923442221','marco_paulo98@hotmail.com');
+    ('Marco Paulo', '1979-11-18', 'Rua do Souto', '4700-225','923442221','marco_paulo98@hotmail.com'),
+    ('Mariana Gonçalves', '1988-07-22', 'Rua da Boa Vista','4700-720', '968788551', 'mgonçalves@hotmail.com'),
+    ('Rui Meireles', '1980-01-03', 'Avenida Central', '4700-540', '912123431', 'ruimeireles@gmail.com'),
+    ('Guilherme Fernades', '1985-03-25', 'Rua das Carmelitas', '4700-302', '932456770', 'guifernandes@hotmail.com'),
+    ('Bruna Martins', '1998-04-30', 'Rua de Camões', '4700-680', '911213196', 'bmartina@gmail.com'),
+    ('Roberto Mendes', '1984-11-11', 'Rua Fernão Mendes Pinto', '4700-734', 'robertomds@hotmail.com'),
+    ('Alexandre Vilaça', '1993-05-17', 'Rua de Camões', '4700-680', '938467511', 'alexvilaca@gmail.com'),
+    ('Inês Esteves', '1995-06-19', 'Rua dos Caldeireiros', '4700-706', '968743229', 'inesesteves@gmail.com'),
+    ('José Condez', '1982-02-28', 'Travessa do Carmo', '4700-782', '934560003', 'josecondez@hotmail.com');
     
 INSERT INTO Limitacao_Fisica
 	(Nome, Id_cliente)
@@ -159,7 +167,20 @@ INSERT INTO Plano
     (35, '2018-08-02', 3, 34),
     (30, '2018-02-01', 4, 35),
 	(60, '2018-03-02', 9, 36),
-    (50, '2018-04-01', 9, 36);
+    (50, '2018-04-01', 9, 36),
+    (35, '2018-05-05', 4, 38),
+    (45, '2018-01-12',5, 39),
+    (55, '2018-10-01', 8, 40),
+    (36, '2018-04-30', 2, 41),
+    (30, '2018-05-16', 3, 39),
+    (20, '2018-06-30', 1, 42),
+    (40, '2018-02-15', 6, 43),
+    (27, '2018-08-01', 4, 44),
+    (60, '2018-11-01', 7, 45),
+    (35, '2018-10-22', 5, 39),
+    (23, '2018-08-31', 2, 41),
+    (45, '2018-05-01', 3, 43),
+    (35, '2018-11-01', 9, 42);
     
 INSERT INTO Plano_Atividade_Fitness
 	(Nr_aulas, Id_plano, Id_atividade)
@@ -246,7 +267,52 @@ INSERT INTO Plano_Atividade_Fitness
     (10, 51, 7),
 	(11, 51, 5),
 	(7, 51, 3),
-	(9, 51, 2);
+	(9, 51, 2),
+    (6, 52, 4),
+    (4, 52, 1),
+    (8, 52, 9),
+    (6, 52, 6),
+    (10, 53, 5),
+    (8, 53, 7),
+    (10, 53, 2),
+    (5, 53, 9),
+    (8, 54, 1),
+    (8, 54, 8),
+    (8, 54, 5),
+    (6, 54, 7),
+    (6, 55, 1),
+    (4, 55, 3),
+    (3, 55, 9),
+    (8, 56, 2),
+    (5, 56, 5),
+    (6, 56, 8),
+    (7, 57, 7),
+    (4, 57, 3),
+    (5, 57, 9),
+    (8, 58, 1),
+    (4, 58, 4),
+    (4, 58, 6),
+    (6, 59, 2),
+    (6, 59, 5),
+    (2, 59, 8),
+    (10, 60, 7),
+    (8, 60, 3),
+    (4, 60, 2),
+    (2, 60, 1),
+    (4, 60, 9),
+    (6, 60, 8),
+    (4, 61, 2),
+    (4, 61, 7),
+    (4, 61, 5),
+    (6, 62, 4),
+    (4, 62, 3),
+    (5, 62, 6),
+    (5, 63, 9),
+    (5, 63, 7),
+    (4, 63, 5),
+    (3, 64, 1),
+    (5, 64, 3),
+    (7, 54, 9);
     
 
     
