@@ -48,12 +48,50 @@ ORDER BY Nr_planos DESC
 LIMIT 1;
 
 -- Reconhecer o professor que lecionou mais atividades
+SELECT count(A.Id_professor) AS Nr_atividades, P.Nome FROM Atividade_Fitness AS A
+INNER JOIN Professor AS P ON P.Id_professor = A.Id_professor
+GROUP BY A.Id_professor
+ORDER BY Nr_atividades DESC
+LIMIT 1;
 
 -- Conhecer o número de clientes inscritos numa atividade fitness
+DROP PROCEDURE IF EXISTS atividade_fitness;
+DELIMITER $$
+CREATE PROCEDURE atividade_fitness (nome_atividade VARCHAR(45)) 
+BEGIN
+SELECT A.Nome FROM Professor AS P
+INNER JOIN Atividade_Fitness AS A ON A.Id_professor = P.Id_professor
+WHERE P.Nome = nome_professor;
+END $$
+DELIMITER ;
 
--- Atividade fitness mais frequentada por um aluno
+CALL atividades_fitness ('Crossfit');
+
+-- Atividade fitness mais frequentada por um determinado aluno 
+DROP PROCEDURE IF EXISTS atividade_frequentada
+DELIMITER $$
+CREATE PROCEDURE atividade_frequentada (nome_aluno VARCHAR(45)) 
+BEGIN
+SELECT C.Nome, sum(PA.Nr_aulas) AS Nr_aulas, A.Nome AS Atividade FROM Cliente AS C
+INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
+INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_plano = P.Id_plano
+INNER JOIN Atividade_Fitness AS A ON PA.Id_atividade = A.Id_atividade
+WHERE C.Nome = nome_aluno
+GROUP BY A.Nome, PA.Nr_aulas
+ORDER BY PA.Nr_aulas DESC
+LIMIT 1;
+END $$
+DELIMITER ;
+
+CALL atividade_frequentada('Carolina Pinto');
+
 
 -- Tipo e quantidade de maquinas em cada atividade
+SELECT a.Nome, sum(m.Quantidade) AS QuantidadeMaquina
+FROM Maquina m, Atividade_Fitness a, Atividade_Fitness_Maquina am
+WHERE am.Id_maquina = m.Id_maquina
+AND am.Id_atividade = a.Id_atividade
+GROUP BY a.Nome;
 
 
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
