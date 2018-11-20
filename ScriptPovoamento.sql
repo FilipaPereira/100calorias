@@ -30,18 +30,26 @@ INSERT INTO Cliente
 	('Renato Pimentel', '1980-02-22', 'Rua do Fortunato', '4700-419','918920544','pimentel.22@live.com.pt'),
     ('Filipe Vaz', '1970-04-10', 'Rua do Mercadinho', '4700-550','931029746','vaz.lipe10@hotmail.com'),
     ('Rodrigo Moura', '1998-07-28', 'Rua do Salitre', '4700-229','937180781','rodrigo28moura@gmail.com'),
-    ('Estér Rodrigues', '1974-11-24', 'Praçeta do Vilar', '4700-789','968152634','rodriguester24@gmail.com');
+    ('Estér Rodrigues', '1974-11-24', 'Praçeta do Vilar', '4700-789','968152634','rodriguester24@gmail.com'),
+	('Ana Catarina Sá', '1990-04-28', 'Rua da Boa Vista', '4700-720','968233299','catarina_sa98@gmail.com'),
+    ('Salete Pinheiro', '1989-01-15', 'Rua do Souto', '4700-225','928471660','salete89@sapo.com'),
+    ('Maria Carla Cruz', '1970-08-30', 'Rua do Rouxinol', '4700-219','967177731','maria_cruzinha96@hotmail.com'),
+    ('Frederico Costa', '2000-03-16', 'Rua do Salitre', '4700-229','923445889','frederico-costa64@gmail.com'),
+    ('João Capa', '1970-05-23', 'Rua da Laje', '4700-782','967336889','jota12capa@gmail.com'),
+    ('Hugo Ballesteros', '1998-07-28', 'Rua do Salitre', '4700-229','937180781','jota_ballestero@gmail.com'),
+    ('Marco Paulo', '1979-11-18', 'Rua do Souto', '4700-225','923442221','marco_paulo98@hotmail.com');
     
 INSERT INTO Limitacao_Fisica
 	(Nome, Id_cliente)
     VALUES
-    ( 'Insuficiencia cardiaca', '1'),
-    ( 'Paraplegico', '2'),
-    ( 'Tendinite', '4'),
-    ( 'Hérnea cervical', '5'),
-    ( 'Rompimento da cartilagem','7'),
-    ( 'Osteoperose', '8'),
-    ( 'Lesão meniscal', '10');
+    ( 'Insuficiencia cardiaca', 1),
+    ( 'Paraplegico', 2),
+    ( 'Tendinite', 4),
+    ( 'Hérnea cervical', 5),
+    ( 'Rompimento da cartilagem', 7),
+    ( 'Osteoperose', 8),
+    ( 'Lesão meniscal', 10),
+	( 'Diabético', 1);
     
 INSERT INTO Professor
 	(Nome, Data_nascimento, Rua, Codigo_postal, Telemovel, Email)
@@ -135,7 +143,23 @@ INSERT INTO Plano
     (32, '2018-01-30', 9, 8),
     (55, '2018-07-01', 7, 30),
     (44, '2018-03-11', 6, 7),
-    (28, '2018-09-09', 2, 18);
+    (28, '2018-09-09', 2, 18),
+    (30, '2018-01-01', 1, 37),
+    (25, '2018-01-15', 2, 31),
+    (35, '2018-02-09', 1, 37),
+    (20, '2018-03-10', 2, 31),
+    (40, '2018-02-16', 6, 32),
+    (30, '2018-04-02', 1, 37),
+    (30, '2018-08-01', 7, 33),
+    (45, '2018-06-20', 1, 37),
+    (40, '2018-08-02', 3, 34),
+    (30, '2018-02-01', 4, 35),
+	(35, '2018-08-09', 7, 33),
+    (40, '2018-06-09', 1, 37),
+    (35, '2018-08-02', 3, 34),
+    (30, '2018-02-01', 4, 35),
+	(60, '2018-03-02', 9, 36),
+    (50, '2018-04-01', 9, 36);
     
 INSERT INTO Plano_Atividade_Fitness
 	(Nr_aulas, Id_plano, Id_atividade)
@@ -181,7 +205,48 @@ INSERT INTO Plano_Atividade_Fitness
     (11, 15, 10),
     (12, 21, 6),
     (4, 25, 8),
-    (6, 27, 7);
+    (6, 27, 7),
+	(10, 36, 3),
+    (15, 36, 9),
+    (10, 36, 4),
+    (5, 36, 10),
+    (7, 37, 6),
+    (9, 37, 8),
+    (15, 38, 7),
+    (20, 38, 3),
+    (25, 39, 9),
+    (10, 39, 4),
+    (20, 40, 10),
+    (20, 40, 6),
+    (15, 40, 8),
+    (10, 41, 7),
+    (6, 41, 9),
+    (7, 42, 4),
+    (8, 42, 10),
+    (10, 42, 6),
+    (15, 43, 8),
+    (10, 43, 7),
+    (3, 44, 9),
+    (4, 44, 5),
+    (6, 45, 10),
+    (7, 45, 6),
+    (8, 45, 8),
+    (10, 45, 7),
+	(11, 46, 9),
+    (12, 46, 4),
+    (10, 47, 10),
+    (9, 47, 6),
+    (5, 47, 8),
+    (10, 47, 7),
+    (12, 47, 3),
+    (11, 48, 5),
+    (10, 48, 9),
+    (9, 49, 6),
+    (8, 49, 8),
+    (10, 51, 7),
+	(11, 51, 5),
+	(7, 51, 3),
+	(9, 51, 2);
     
 
     
