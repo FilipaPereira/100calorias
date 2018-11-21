@@ -54,20 +54,9 @@ GROUP BY A.Id_professor
 ORDER BY Nr_atividades DESC
 LIMIT 1;
 
--- Conhecer o número de clientes inscritos numa atividade fitness
-DROP PROCEDURE IF EXISTS atividade_fitness;
-DELIMITER $$
-CREATE PROCEDURE atividade_fitness (nome_atividade VARCHAR(45)) 
-BEGIN
-SELECT A.Nome FROM Professor AS P
-INNER JOIN Atividade_Fitness AS A ON A.Id_professor = P.Id_professor
-WHERE P.Nome = nome_professor;
-END $$
-DELIMITER ;
+-- Conhecer o número de clientes inscritos numa atividade fitness ------> Tirei porque se vai mudar e é direto do nr de participantes!
 
-CALL atividades_fitness ('Crossfit');
-
--- Atividade fitness mais frequentada por um determinado aluno 
+-- Atividade fitness mais frequentada por um determinado aluno
 DROP PROCEDURE IF EXISTS atividade_frequentada
 DELIMITER $$
 CREATE PROCEDURE atividade_frequentada (nome_aluno VARCHAR(45)) 
@@ -86,13 +75,13 @@ DELIMITER ;
 CALL atividade_frequentada('Carolina Pinto');
 
 
--- Tipo e quantidade de maquinas em cada atividade
-SELECT a.Nome, sum(m.Quantidade) AS QuantidadeMaquina
-FROM Maquina m, Atividade_Fitness a, Atividade_Fitness_Maquina am
-WHERE am.Id_maquina = m.Id_maquina
-AND am.Id_atividade = a.Id_atividade
-GROUP BY a.Nome;
-
+-- Tipo e quantidade de maquinas em cada atividade 
+SELECT A.Nome, sum(M.Quantidade) AS QuantidadeMaquina, M.Tipo AS TipoMaquina 
+FROM Maquina AS M
+INNER JOIN Atividade_Fitness_Maquina AS AM ON AM.Id_maquina = M.Id_maquina
+INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = AM.Id_atividade
+GROUP BY A.Nome, M.Tipo, M.Quantidade
+ORDER BY M.Quantidade DESC;
 
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
 SELECT sum(PA.Nr_aulas) AS Nr_aulas, C.Nome FROM Plano_Atividade_Fitness AS PA
