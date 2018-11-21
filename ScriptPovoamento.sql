@@ -42,10 +42,16 @@ INSERT INTO Cliente
     ('Rui Meireles', '1980-01-03', 'Avenida Central', '4700-540', '912123431', 'ruimeireles@gmail.com'),
     ('Guilherme Fernades', '1985-03-25', 'Rua das Carmelitas', '4700-302', '932456770', 'guifernandes@hotmail.com'),
     ('Bruna Martins', '1998-04-30', 'Rua de Camões', '4700-680', '911213196', 'bmartina@gmail.com'),
-    ('Roberto Mendes', '1984-11-11', 'Rua Fernão Mendes Pinto', '4700-734', 'robertomds@hotmail.com'),
+    ('Roberto Mendes', '1984-11-11', 'Rua Fernão Mendes Pinto', '4700-734', '914800083','robertomds@hotmail.com'),
     ('Alexandre Vilaça', '1993-05-17', 'Rua de Camões', '4700-680', '938467511', 'alexvilaca@gmail.com'),
     ('Inês Esteves', '1995-06-19', 'Rua dos Caldeireiros', '4700-706', '968743229', 'inesesteves@gmail.com'),
-    ('José Condez', '1982-02-28', 'Travessa do Carmo', '4700-782', '934560003', 'josecondez@hotmail.com');
+    ('José Condez', '1982-02-28', 'Travessa do Carmo', '4700-782', '934560003', 'josecondez@hotmail.com'),
+    ('Nuno Castelo', '1997-01-27', 'Rua do Salitre', '4700-229', '961937010','nuno97castelo@gmail.com'),
+    ('Beatriz Castro','1986-12-10', 'Praçeta do Vilar', '4700-789', '917208582','beatriz_castro12@hotmail.com'),
+    ('Luísa Gomes','1990-07-04', 'Avenida da República', '4700-489', '924710445', 'lgomes_90@gmail.com'),
+    ('Gonçalo Soares', '1992-08-30', 'Rua do Fortunato', '4700-419', '931381068', 'goncas_soares_08@gmail.com'),
+    ('Filomena Jesus', '1999-01-27', 'Rua das Carmelitas', '4700-302', '961793032','filomena99j@gmail.com');
+    
     
 INSERT INTO Limitacao_Fisica
 	(Nome, Id_cliente)
@@ -67,7 +73,7 @@ INSERT INTO Professor
     ('Andre Gonçalves', '1990-03-02', 'Rua da Laje', '4700-870', '933423322', 'andreg@gmail.com'),
     ('Diogo Costa', '1998-08-12', 'Rua da Cruz', '4700-880', '912345334', 'diogoCosta@gmail.com'),
 	('Susana Esteves', '1988-04-30', 'Rua de Cedofeita', '4700-715', '965403215', 'susana@gmail.com'),
-    ('Gonçalo Fernades', '1976-08-01', 'Rua do Rosário', '4706-888', '912564732', 'goncalo@gmail.com'),
+    ('Gonçalo Fernandes', '1976-08-01', 'Rua do Rosário', '4706-888', '912564732', 'goncalo@gmail.com'),
     ('Afonso Vieira', '1980-12-02', 'Rua do Loureiro', '4700-620','913788014', 'afonso@hotmail.com'),
     ('Raquel Chaves', '1992-03-19', 'Rua de Trás', '4700-734', '967222514', 'raquel@gmail.com'),
 	('Tiago Freitas', '1993-06-22', 'Rua das Flores', '4702-603', '962542361', 'tiago@gmail.com');
@@ -180,8 +186,13 @@ INSERT INTO Plano
     (35, '2018-10-22', 5, 39),
     (23, '2018-08-31', 2, 41),
     (45, '2018-05-01', 3, 43),
-    (35, '2018-11-01', 9, 42);
-    
+    (35, '2018-11-01', 9, 42),
+    (52, '2017-01-09', 8, 2),
+    (39, '2018-10-11', 1, 23),
+    (45, '2018-03-12', 7, 15),
+    (42, '2018-09-17', 5, 9),
+    (56, '2017-03-15', 9, 28),
+    (27, '2017-11-12', 7, 10);
 INSERT INTO Plano_Atividade_Fitness
 	(Nr_aulas, Id_plano, Id_atividade)
     VALUES
