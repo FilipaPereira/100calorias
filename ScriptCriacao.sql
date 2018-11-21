@@ -33,9 +33,8 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente` (
   `Data_nascimento` DATE NOT NULL,
   `Endereco` VARCHAR(45) NOT NULL,
   `Telemovel` CHAR(9) NOT NULL,
-  `Email` VARCHAR(45) NULL,
   `Id_localidade` INT NOT NULL,
-  PRIMARY KEY (`Id_cliente`),
+  PRIMARY KEY (`Id_cliente`, `Id_localidade`),
   INDEX `fk_Cliente_Localidade1_idx` (`Id_localidade` ASC),
   CONSTRAINT `fk_Cliente_Localidade1`
     FOREIGN KEY (`Id_localidade`)
@@ -54,15 +53,16 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Professor` (
   `Endereco` VARCHAR(45) NOT NULL,
   `Data_nascimento` DATE NOT NULL,
   `Telemovel` CHAR(9) NOT NULL,
-  `Email` VARCHAR(45) NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `Estado` VARCHAR(45) NOT NULL,
   `Id_localidade` INT NOT NULL,
-  PRIMARY KEY (`Id_professor`),
+  PRIMARY KEY (`Id_professor`, `Id_localidade`),
   INDEX `fk_Professor_Localidade1_idx` (`Id_localidade` ASC),
   CONSTRAINT `fk_Professor_Localidade1`
     FOREIGN KEY (`Id_localidade`)
     REFERENCES `ginasio`.`Localidade` (`Id_localidade`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -102,14 +102,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Atividade_Fitness` (
   `Duracao` TIME NOT NULL,
   `Sala` INT NOT NULL,
   `Nr_inscritos` INT NOT NULL,
-  `Id_professor` INT NOT NULL,
-  PRIMARY KEY (`Id_atividade`),
-  INDEX `fk_Atividade_Fitness_Professor1_idx` (`Id_professor` ASC),
-  CONSTRAINT `fk_Atividade_Fitness_Professor1`
-    FOREIGN KEY (`Id_professor`)
-    REFERENCES `ginasio`.`Professor` (`Id_professor`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
+  PRIMARY KEY (`Id_atividade`))
 ENGINE = InnoDB;
 
 
@@ -130,14 +123,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `ginasio`.`Limitacao_Fisica` (
   `Id_Limitacao` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
-  `Id_cliente` INT NOT NULL,
-  PRIMARY KEY (`Id_Limitacao`, `Id_cliente`),
-  INDEX `fk_Limitação_Física_Cliente1_idx` (`Id_cliente` ASC),
-  CONSTRAINT `fk_Limitação_Física_Cliente1`
-    FOREIGN KEY (`Id_cliente`)
-    REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE)
+  PRIMARY KEY (`Id_Limitacao`))
 ENGINE = InnoDB;
 
 
@@ -173,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Atividade_Fitness_Maquina` (
   `Id_maquina` INT NOT NULL,
   PRIMARY KEY (`Id_atividade`, `Id_maquina`),
   INDEX `fk_Atividade_Fitness_has_Maquina_Maquina1_idx` (`Id_maquina` ASC),
-  INDEX `fk_Atividade_Fitness_has_Maquina_Atividade_Fitness1_idx` (`Id_atividade` ASC) ,
+  INDEX `fk_Atividade_Fitness_has_Maquina_Atividade_Fitness1_idx` (`Id_atividade` ASC),
   CONSTRAINT `fk_Atividade_Fitness_has_Maquina_Atividade_Fitness1`
     FOREIGN KEY (`Id_atividade`)
     REFERENCES `ginasio`.`Atividade_Fitness` (`Id_atividade`)
@@ -184,6 +170,46 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Atividade_Fitness_Maquina` (
     REFERENCES `ginasio`.`Maquina` (`Id_maquina`)
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ginasio`.`Telemovel`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ginasio`.`Telemovel` (
+  `Id_telemovel` INT NOT NULL AUTO_INCREMENT,
+  `Tipo` VARCHAR(45) NOT NULL,
+  `Numero` VARCHAR(45) NOT NULL,
+  `Id_cliente` INT NOT NULL,
+  PRIMARY KEY (`Id_telemovel`, `Id_cliente`),
+  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC),
+  CONSTRAINT `fk_Telemovel_Cliente1`
+    FOREIGN KEY (`Id_cliente`)
+    REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ginasio`.`Cliente_Limitacao_Fisica`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente_Limitacao_Fisica` (
+  `Id_cliente` INT NOT NULL AUTO_INCREMENT,
+  `Id_Limitacao` INT NOT NULL,
+  PRIMARY KEY (`Id_cliente`, `Id_Limitacao`),
+  INDEX `fk_Cliente_has_Limitacao_Fisica_Limitacao_Fisica1_idx` (`Id_Limitacao` ASC),
+  INDEX `fk_Cliente_has_Limitacao_Fisica_Cliente1_idx` (`Id_cliente` ASC),
+  CONSTRAINT `fk_Cliente_has_Limitacao_Fisica_Cliente1`
+    FOREIGN KEY (`Id_cliente`)
+    REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Cliente_has_Limitacao_Fisica_Limitacao_Fisica1`
+    FOREIGN KEY (`Id_Limitacao`)
+    REFERENCES `ginasio`.`Limitacao_Fisica` (`Id_Limitacao`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
