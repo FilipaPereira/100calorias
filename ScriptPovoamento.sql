@@ -8,7 +8,7 @@ INSERT INTO Localidade
 
 
 INSERT INTO Cliente
-	(Nome, Data_nascimento, Endereço, Telemovel, Email, Localidade)
+	(Nome, Data_nascimento, Endereco, Telemovel, Email, Id_localidade)
     VALUES
     ('Ana Maria', '1980-02-13', 'Rua da Capela nº12 4700-800', '932343333', 'ana@gmail.com', 2),
     ('João Moreira', '1988-04-24', 'Rua da Travessa nº41 4700-801', '963442211', 'joao@gmail.com', 2),
@@ -74,7 +74,7 @@ INSERT INTO Limitacao_Fisica
 	( 'Diabético', 1);
 
 INSERT INTO Professor
-	(Nome, Data_nascimento, Endereço, Telemovel, Email, Localidade)
+	(Nome, Data_nascimento, Endereco, Telemovel, Email, Id_localidade)
     VALUES
     ('Joana Antunes', '2000-02-13', 'Rua da Cruz nº 20 4700-880', '916060454', 'joana@gmail.com', 2),
     ('Carlos Sousa', '1970-06-13', 'Avenida da Liberdade nº67 4700-370', '968571332', 'carlosmsousa@gmail.com', 4),
@@ -89,15 +89,15 @@ INSERT INTO Professor
 INSERT INTO Atividade_Fitness
 	(Max_participantes, Nome, Duracao, Sala, Nr_inscritos, Id_professor)
     VALUES
-    (20, 'Run', 4500, 1, 4, 1),
-    (25, 'Cycling', 4000, 2, 6, 2),
-    (10, 'Step', 4500, 3, 9, 3),
-    (10, 'Core', 4000, 4, 9, 4),
-	(10, 'Pilates', 4500, 5, 5, 3),
-    (15, 'Crossfit', 4000, 6, 8, 5),
-    (20, 'Body Pump', 4500, 2, 11, 9),
-    (10, 'Powerjump', 5000, 4, 10, 6),
-    (25, 'Body Combat', 4000, 3, 10, 7),
+    (20, 'Run', 4500, 1, 10, 1),
+    (25, 'Cycling', 4000, 2, 12, 2),
+    (10, 'Step', 4500, 3, 16, 3),
+    (10, 'Core', 4000, 4, 14, 4),
+	(10, 'Pilates', 4500, 5, 12, 3),
+    (15, 'Crossfit', 4000, 6, 13, 5),
+    (20, 'Body Pump', 4500, 2, 18, 9),
+    (10, 'Powerjump', 5000, 4, 16, 6),
+    (25, 'Body Combat', 4000, 3, 18, 7),
     (20, 'Hiit', 4500, 5, 10, 8);
 
 INSERT INTO Maquina
@@ -215,7 +215,6 @@ INSERT INTO Plano_Atividade_Fitness
     (10, 3, 3),
     (8, 4, 4),
     (10, 8, 2),
-    (12, 5, 3),
     (7, 10, 1),
     (10, 6, 4),
     (12, 5, 7),
@@ -338,7 +337,6 @@ INSERT INTO Plano_Atividade_Fitness
     (3, 64, 1),
     (5, 64, 3),
     (7, 54, 9),
-    (10, 70, 4),
     (5, 69, 5),
     (12, 72, 6),
     (6, 66, 8),
