@@ -4,8 +4,9 @@ DROP VIEW IF EXISTS view_maquinas;
 DELIMITER $$
 CREATE VIEW view_maquinas
 AS
-	SELECT A.Nome, M.Tipo, M.Quantidade FROM Maquina AS M
-    INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = M.Id_atividade;
+	SELECT A.Nome, M.Tipo, AM.Nr_maquinas AS QtUtilizada, M.Quantidade AS QtDisponivel FROM maquina AS M
+    INNER JOIN atividade_fitness_maquina AS AM ON AM.Id_maquina = M.Id_maquina
+    INNER JOIN atividade_fitness AS A ON A.Id_atividade = AM.Id_atividade;
 $$
 DELIMITER ;
     
