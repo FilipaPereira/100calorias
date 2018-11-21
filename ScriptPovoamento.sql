@@ -1,58 +1,66 @@
-INSERT INTO Cliente
-	(Nome, Data_nascimento, Rua, Codigo_postal, Telemovel, Email)
+INSERT INTO Localidade
+	(Nome)
     VALUES
-    ('Ana Maria', '1980-02-13', 'Rua da Capela', '4700-800', '932343333', 'ana@gmail.com'),
-    ('João Moreira', '1988-04-24', 'Rua da Travessa', '4700-801', '963442211', 'joao@gmail.com'),
-    ('Carlos Silva', '1990-08-30', 'Rua 25 de abril', '4700-770', '926843322', 'carlos@gmail.com'),
-    ('Josefina Andrade', '1999-12-12', 'Avenida Central', '4700-540', '968471443', 'josefina@gmail.com'),
-    ('José Pereira', '1992-01-05', 'Rua das Veigas', '4700-700', '912376551', 'jose@gmail.com'),
-	('Carolina Peixoto', '1986-02-12', 'Rua de Belomonte', '4700-705', '967389000', 'carol@gmail.com'),
-    ('António Ferreira', '1984-05-25', 'Rua do Almada', '4700-704', '914465871', 'antonio@hotmail.com'),
-    ('Catarina Cruz', '1985-07-27', 'Rua dos Caldeireiros', '4700-706', '965523412', 'catarina@gmail.com'),
-    ('Pedro Meireles', '1986-06-02', 'Rua das Carmelitas', '4700-302', '915444397', 'pedro@hotmail.com'),
-    ('Ricardo Carvalho', '1988-11-11', 'Rua do Carvalhido', '4700-703', '965111498', 'carvalho@gmail.com'),
-    ('Anabela Pereira', '1997-12-18', 'Rua de Camões', '4700-680', '920186234','belinha_pereira@gmail.com'),
-    ('Rafael Martins', '1989-04-09', 'Avenida Central', '4700-540', '918073563','martins.rafa@live.com.pt'),
-    ('Bruno Marques', '1998-11-12', 'Rua de Camões', '4700-680', '911275097', 'brmarques12@hotmail.com'),
-    ('Joel Lima', '1996-07-17', 'Avenida da Liberdade', '4700-370', '960082744','jlima_96@gmail.com'),
-    ('Maria Peixoto', '1993-01-29', 'Travessa do Carmo', '4700-782', '923581040','m_peixoto@hotmail.com'),
-    ('Sara Gonçaves', '1992-12-09', 'Rua da Laje', '4700-791', '964520836','sarag@gmail.com'),
-    ('Ricardo Oliveira', '1999-06-01', 'Rua da Boavista', '4700-720', '933815028','r_f_oliveira@gmail.com'),
-    ('Carolina Pinto', '2000-10-21', 'Travessa do Carmo', '4700-782', '924138480', 'caropinto_2000@live.com.pt'),
-    ('Daniela Silva','1998-03-10', 'Rua do Souto', '4700-255', '912910021','dani_silva@hotmail.com'),
-    ('Paulo Barros', '1995-09-16', 'Praçeta do Vilar', '4700-789','937156039','plbarros34@gmail.com'),
-    ('Débora Morais', '1990-08-14', 'Rua de Penelas', '4700-739','911234235','debi_morais@gmail.com'),
-    ('David Abreu', '1991-05-01', 'Rua do Salitre', '4700-229','966134123','dave.abreu@hotmail.com'),
-    ('Pedro Oliveira', '1988-10-16', 'Rua Fernão Mendes Pinto', '4700-734','912345920','pedrocas.oliv@hotmail.com'),
-    ('Margarida Vasconcelos', '1999-04-06', 'Rua de Penelas', '4700-933','966127540','vasconcelos.mar@gmail.com'),
-    ('Vitor Barros', '1985-12-03', 'Avenida da República', '4700-489','914275902','vitor_barros_03@gmail.com'),
-    ('Patrícia Vidrago', '1994-12-31', 'Rua do Rouxinol', '4700-219','914725094','patty.vid@gmail.com'),
-	('Renato Pimentel', '1980-02-22', 'Rua do Fortunato', '4700-419','918920544','pimentel.22@live.com.pt'),
-    ('Filipe Vaz', '1970-04-10', 'Rua do Mercadinho', '4700-550','931029746','vaz.lipe10@hotmail.com'),
-    ('Rodrigo Moura', '1998-07-28', 'Rua do Salitre', '4700-229','937180781','rodrigo28moura@gmail.com'),
-    ('Estér Rodrigues', '1974-11-24', 'Praçeta do Vilar', '4700-789','968152634','rodriguester24@gmail.com'),
-	('Ana Catarina Sá', '1990-04-28', 'Rua da Boa Vista', '4700-720','968233299','catarina_sa98@gmail.com'),
-    ('Salete Pinheiro', '1989-01-15', 'Rua do Souto', '4700-225','928471660','salete89@sapo.com'),
-    ('Maria Carla Cruz', '1970-08-30', 'Rua do Rouxinol', '4700-219','967177731','maria_cruzinha96@hotmail.com'),
-    ('Frederico Costa', '2000-03-16', 'Rua do Salitre', '4700-229','923445889','frederico-costa64@gmail.com'),
-    ('João Capa', '1970-05-23', 'Rua da Laje', '4700-782','967336889','jota12capa@gmail.com'),
-    ('Hugo Ballesteros', '1998-07-28', 'Rua do Salitre', '4700-229','937180781','jota_ballestero@gmail.com'),
-    ('Marco Paulo', '1979-11-18', 'Rua do Souto', '4700-225','923442221','marco_paulo98@hotmail.com'),
-    ('Mariana Gonçalves', '1988-07-22', 'Rua da Boa Vista','4700-720', '968788551', 'mgonçalves@hotmail.com'),
-    ('Rui Meireles', '1980-01-03', 'Avenida Central', '4700-540', '912123431', 'ruimeireles@gmail.com'),
-    ('Guilherme Fernades', '1985-03-25', 'Rua das Carmelitas', '4700-302', '932456770', 'guifernandes@hotmail.com'),
-    ('Bruna Martins', '1998-04-30', 'Rua de Camões', '4700-680', '911213196', 'bmartina@gmail.com'),
-    ('Roberto Mendes', '1984-11-11', 'Rua Fernão Mendes Pinto', '4700-734', '914800083','robertomds@hotmail.com'),
-    ('Alexandre Vilaça', '1993-05-17', 'Rua de Camões', '4700-680', '938467511', 'alexvilaca@gmail.com'),
-    ('Inês Esteves', '1995-06-19', 'Rua dos Caldeireiros', '4700-706', '968743229', 'inesesteves@gmail.com'),
-    ('José Condez', '1982-02-28', 'Travessa do Carmo', '4700-782', '934560003', 'josecondez@hotmail.com'),
-    ('Nuno Castelo', '1997-01-27', 'Rua do Salitre', '4700-229', '961937010','nuno97castelo@gmail.com'),
-    ('Beatriz Castro','1986-12-10', 'Praçeta do Vilar', '4700-789', '917208582','beatriz_castro12@hotmail.com'),
-    ('Luísa Gomes','1990-07-04', 'Avenida da República', '4700-489', '924710445', 'lgomes_90@gmail.com'),
-    ('Gonçalo Soares', '1992-08-30', 'Rua do Fortunato', '4700-419', '931381068', 'goncas_soares_08@gmail.com'),
-    ('Filomena Jesus', '1999-01-27', 'Rua das Carmelitas', '4700-302', '961793032','filomena99j@gmail.com');
-    
-    
+    ('Terras de Bouro'),
+    ('Fontelo'),
+    ('Souto'),
+    ('Nogueira');
+
+
+INSERT INTO Cliente
+	(Nome, Data_nascimento, Endereço, Telemovel, Email, Localidade)
+    VALUES
+    ('Ana Maria', '1980-02-13', 'Rua da Capela nº12 4700-800', '932343333', 'ana@gmail.com', 2),
+    ('João Moreira', '1988-04-24', 'Rua da Travessa nº41 4700-801', '963442211', 'joao@gmail.com', 2),
+    ('Carlos Silva', '1990-08-30', 'Rua 25 de abril nº92 4700-770', '926843322', 'carlos@gmail.com', 1),
+    ('Josefina Andrade', '1999-12-12', 'Avenida Central nº15 4700-540', '968471443', 'josefina@gmail.com', 3),
+    ('José Pereira', '1992-01-05', 'Rua das Veigas nº26 4700-700', '912376551', 'jose@gmail.com', 1),
+	('Carolina Peixoto', '1986-02-12', 'Rua de Belomonte nº13 4700-705', '967389000', 'carol@gmail.com', 1),
+    ('António Ferreira', '1984-05-25', 'Rua do Almada nº23 4700-704', '914465871', 'antonio@hotmail.com', 1),
+    ('Catarina Cruz', '1985-07-27', 'Rua dos Caldeireiros nº73 4700-706', '965523412', 'catarina@gmail.com', 1),
+    ('Pedro Meireles', '1986-06-02', 'Rua das Carmelitas nº8 4700-302', '915444397', 'pedro@hotmail.com', 4),
+    ('Ricardo Carvalho', '1988-11-11', 'Rua do Carvalhido nº50 4700-703', '965111498', 'carvalho@gmail.com', 1),
+    ('Anabela Pereira', '1997-12-18', 'Rua de Camões nº44 4700-680', '920186234','belinha_pereira@gmail.com', 1),
+    ('Rafael Martins', '1989-04-09', 'Avenida Central nº76 4700-540', '918073563','martins.rafa@live.com.pt', 3),
+    ('Bruno Marques', '1998-11-12', 'Rua de Camões nº25 4700-680', '911275097', 'brmarques12@hotmail.com', 1),
+    ('Joel Lima', '1996-07-17', 'Avenida da Liberdade nº19 4700-370', '960082744','jlima_96@gmail.com', 4),
+    ('Maria Peixoto', '1993-01-29', 'Travessa do Carmo nº64 4700-782', '923581040','m_peixoto@hotmail.com', 1),
+    ('Sara Gonçaves', '1992-12-09', 'Rua da Laje nº33 4700-791', '964520836','sarag@gmail.com', 1),
+    ('Ricardo Oliveira', '1999-06-01', 'Rua da Boavista nº83 4700-720', '933815028','r_f_oliveira@gmail.com', 1),
+    ('Carolina Pinto', '2000-10-21', 'Travessa do Carmo nº22 4700-782', '924138480', 'caropinto_2000@live.com.pt', 1),
+    ('Daniela Silva','1998-03-10', 'Rua do Souto nº52 4700-255', '912910021','dani_silva@hotmail.com', 4),
+    ('Paulo Barros', '1995-09-16', 'Praçeta do Vilar nº27 4700-789', '937156039','plbarros34@gmail.com', 2),
+    ('Débora Morais', '1990-08-14', 'Rua de Penelas nº 38 4700-739', '911234235','debi_morais@gmail.com', 2),
+    ('David Abreu', '1991-05-01', 'Rua do Salitre nº21 4700-229', '966134123','dave.abreu@hotmail.com', 4),
+    ('Pedro Oliveira', '1988-10-16', 'Rua Fernão Mendes Pinto nº6 4700-734', '912345920','pedrocas.oliv@hotmail.com', 1),
+    ('Margarida Vasconcelos', '1999-04-06', 'Rua de Penelas nº46 4700-933', '966127540','vasconcelos.mar@gmail.com', 2),
+    ('Vitor Barros', '1985-12-03', 'Avenida da República nº57 4700-489', '914275902','vitor_barros_03@gmail.com', 3),
+    ('Patrícia Vidrago', '1994-12-31', 'Rua do Rouxinol nº42 4700-219', '914725094','patty.vid@gmail.com', 4),
+	('Renato Pimentel', '1980-02-22', 'Rua do Fortunato nº30 4700-419', '918920544','pimentel.22@live.com.pt', 4),
+    ('Filipe Vaz', '1970-04-10', 'Rua do Mercadinho nº29 4700-550', '931029746','vaz.lipe10@hotmail.com', 3),
+    ('Rodrigo Moura', '1998-07-28', 'Rua do Salitre nº77 4700-229', '937180781','rodrigo28moura@gmail.com', 4),
+    ('Estér Rodrigues', '1974-11-24', 'Praçeta do Vilar nº16 4700-789', '968152634','rodriguester24@gmail.com', 1),
+	('Ana Catarina Sá', '1990-04-28', 'Rua da Boa Vista nº88 4700-720', '968233299','catarina_sa98@gmail.com', 1),
+    ('Salete Pinheiro', '1989-01-15', 'Rua do Souto nº37 4700-225', '928471660','salete89@sapo.com', 4),
+    ('Maria Carla Cruz', '1970-08-30', 'Rua do Rouxinol nº9 4700-219', '967177731','maria_cruzinha96@hotmail.com', 4),
+    ('Frederico Costa', '2000-03-16', 'Rua do Salitre nº78 4700-229', '923445889','frederico-costa64@gmail.com', 4),
+    ('João Capa', '1970-05-23', 'Rua da Laje nº10 4700-782', '967336889','jota12capa@gmail.com', 1),
+    ('Hugo Ballesteros', '1998-07-28', 'Rua do Salitre nº90 4700-229', '937180781','jota_ballestero@gmail.com', 4),
+    ('Marco Paulo', '1979-11-18', 'Rua do Souto nº24 4700-225', '923442221','marco_paulo98@hotmail.com', 4),
+    ('Mariana Gonçalves', '1988-07-22', 'Rua da Boa Vista nº39 4700-720', '968788551', 'mgonçalves@hotmail.com', 1),
+    ('Rui Meireles', '1980-01-03', 'Avenida Central nº13 4700-540', '912123431', 'ruimeireles@gmail.com', 3),
+    ('Guilherme Fernandes', '1985-03-25', 'Rua das Carmelitas nº65 4700-302', '932456770', 'guifernandes@hotmail.com', 4),
+    ('Bruna Martins', '1998-04-30', 'Rua de Camões nº28 4700-680', '911213196', 'bmartina@gmail.com', 3),
+    ('Roberto Mendes', '1984-11-11', 'Rua Fernão Mendes Pinto nº47 4700-734', '914800083','robertomds@hotmail.com', 1),
+    ('Alexandre Vilaça', '1993-05-17', 'Rua de Camões nº56 4700-680', '938467511', 'alexvilaca@gmail.com', 1),
+    ('Inês Esteves', '1995-06-19', 'Rua dos Caldeireiros nº14 4700-706', '968743229', 'inesesteves@gmail.com', 1),
+    ('José Condez', '1982-02-28', 'Travessa do Carmo nº91 4700-782', '934560003', 'josecondez@hotmail.com', 2),
+    ('Nuno Castelo', '1997-01-27', 'Rua do Salitre nº63 4700-229', '961937010','nuno97castelo@gmail.com', 4),
+    ('Beatriz Castro','1986-12-10', 'Praçeta do Vilar nº4 4700-789', '917208582','beatriz_castro12@hotmail.com', 1),
+    ('Luísa Gomes','1990-07-04', 'Avenida da República nº32 4700-489', '924710445', 'lgomes_90@gmail.com', 3),
+    ('Gonçalo Soares', '1992-08-30', 'Rua do Fortunato nº40 4700-419', '931381068', 'goncas_soares_08@gmail.com', 3),
+    ('Filomena Jesus', '1999-01-27', 'Rua das Carmelitas nº11 4700-302', '961793032','filomena99j@gmail.com', 1);
+
 INSERT INTO Limitacao_Fisica
 	(Nome, Id_cliente)
     VALUES
@@ -64,20 +72,20 @@ INSERT INTO Limitacao_Fisica
     ( 'Osteoperose', 8),
     ( 'Lesão meniscal', 10),
 	( 'Diabético', 1);
-    
+
 INSERT INTO Professor
-	(Nome, Data_nascimento, Rua, Codigo_postal, Telemovel, Email)
+	(Nome, Data_nascimento, Endereço, Telemovel, Email, Localidade)
     VALUES
-    ('Joana Antunes', '2000-02-13', 'Rua da Cruz', '4700-880', '916060454', 'joana@gmail.com'),
-    ('Carlos Sousa', '1970-06-13', 'Avenida da Liberdade', '4700-370', '968571332', 'carlosmsousa@gmail.com'),
-    ('Andre Gonçalves', '1990-03-02', 'Rua da Laje', '4700-870', '933423322', 'andreg@gmail.com'),
-    ('Diogo Costa', '1998-08-12', 'Rua da Cruz', '4700-880', '912345334', 'diogoCosta@gmail.com'),
-	('Susana Esteves', '1988-04-30', 'Rua de Cedofeita', '4700-715', '965403215', 'susana@gmail.com'),
-    ('Gonçalo Fernandes', '1976-08-01', 'Rua do Rosário', '4706-888', '912564732', 'goncalo@gmail.com'),
-    ('Afonso Vieira', '1980-12-02', 'Rua do Loureiro', '4700-620','913788014', 'afonso@hotmail.com'),
-    ('Raquel Chaves', '1992-03-19', 'Rua de Trás', '4700-734', '967222514', 'raquel@gmail.com'),
-	('Tiago Freitas', '1993-06-22', 'Rua das Flores', '4702-603', '962542361', 'tiago@gmail.com');
-    
+    ('Joana Antunes', '2000-02-13', 'Rua da Cruz nº 20 4700-880', '916060454', 'joana@gmail.com', 2),
+    ('Carlos Sousa', '1970-06-13', 'Avenida da Liberdade nº67 4700-370', '968571332', 'carlosmsousa@gmail.com', 4),
+    ('Andre Gonçalves', '1990-03-02', 'Rua da Laje nº68 4700-870', '933423322', 'andreg@gmail.com', 2),
+    ('Diogo Costa', '1998-08-12', 'Rua da Cruz nº69 4700-880', '912345334', 'diogoCosta@gmail.com', 2),
+	('Susana Esteves', '1988-04-30', 'Rua de Cedofeita nº81 4700-715', '965403215', 'susana@gmail.com', 1),
+    ('Gonçalo Fernandes', '1976-08-01', 'Rua do Rosário nº3 4706-888', '912564732', 'goncalo@gmail.com', 2),
+    ('Afonso Vieira', '1980-12-02', 'Rua do Loureiro nº7 4700-620','913788014', 'afonso@hotmail.com', 3),
+    ('Raquel Chaves', '1992-03-19', 'Rua de Trás nº54 4700-734', '967222514', 'raquel@gmail.com', 1),
+	('Tiago Freitas', '1993-06-22', 'Rua das Flores nº61 4702-603', '962542361', 'tiago@gmail.com', 3);
+
 INSERT INTO Atividade_Fitness
 	(Max_participantes, Nome, Duracao, Sala, Nr_inscritos, Id_professor)
     VALUES
@@ -91,7 +99,7 @@ INSERT INTO Atividade_Fitness
     (10, 'Powerjump', 5000, 4, 10, 6),
     (25, 'Body Combat', 4000, 3, 10, 7),
     (20, 'Hiit', 4500, 5, 10, 8);
-    
+
 INSERT INTO Maquina
 	(Tipo, Quantidade)
     VALUES
@@ -103,9 +111,9 @@ INSERT INTO Maquina
     ('Cordas', 15),
     ('Mini-trampolim', 15),
     ('Pesos', 20),
-    ('Kettlebell', 20),    
+    ('Kettlebell', 20),
     ('Argolas', 16);
-    
+
 INSERT INTO Atividade_Fitness_Maquina
 	(Nr_maquinas, Id_atividade, Id_maquina)
     VALUES
@@ -120,8 +128,8 @@ INSERT INTO Atividade_Fitness_Maquina
     (15,6,9),
     (15,6,10);
     
-INSERT INTO Plano 
-	(Preco, Data_inicio, Id_professor, Id_cliente)
+INSERT INTO Plano
+	(Preco, Data_inicio, Estado, Id_professor, Id_cliente)
     VALUES
     (30, '2018-01-01', 'Ativo', 1, 1),
 	(40, '2018-02-01', 'Ativo', 2, 2),
@@ -198,7 +206,7 @@ INSERT INTO Plano
 	(51, '2017-11-23', 'Ativo', 3, 48),
 	(49, '2017-06-09', 'Ativo', 3, 49),
 	(55, '2017-06-29', 'Ativo', 5, 50);
-    
+
 INSERT INTO Plano_Atividade_Fitness
 	(Nr_aulas, Id_plano, Id_atividade)
     VALUES
@@ -343,4 +351,3 @@ INSERT INTO Plano_Atividade_Fitness
     (10, 67, 9),
 	(7, 65, 6),
     (12, 70, 4);
-    
