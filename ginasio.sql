@@ -37,6 +37,7 @@ LIMIT 3;
 SELECT count(P.Id_plano) AS Nr_inscritos, A.Nome FROM Plano AS P
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_plano = P.Id_plano
 INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = PA.Id_atividade
+WHERE P.Estado = 'Ativo'
 GROUP BY A.Id_atividade 
 ORDER BY Nr_inscritos DESC
 LIMIT 3;
@@ -123,11 +124,13 @@ DROP PROCEDURE IF EXISTS alunos_atividade
 DELIMITER $$
 CREATE PROCEDURE alunos_atividade (nome_atividade VARCHAR(45)) 
 BEGIN
-SELECT C.Nome, C.Email, C.Telemovel FROM Atividade_Fitness AS A
+SELECT C.Nome, T.Numero, T.Tipo FROM Atividade_Fitness AS A
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_atividade = A.Id_atividade
 INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano
 INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
-WHERE A.Nome = nome_atividade;
+INNER JOIN Telemovel AS T ON C.Id_cliente = T.Id_cliente
+WHERE P.Estado = 'Ativo'
+			  AND A.Nome = nome_atividade;
 END $$
 DELIMITER ;
 
