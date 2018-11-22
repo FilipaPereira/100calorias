@@ -159,7 +159,7 @@ INSERT INTO Telemovel
     ('Emergência', '967834702', 50);
 
 INSERT INTO Limitacao_Fisica
-	(Nome, Id_cliente)
+	(Nome)
     VALUES
     ( 'Insuficiencia cardiaca'),
     ( 'Paraplegico'),
@@ -174,29 +174,29 @@ INSERT INTO Cliente_Limitacao_Fisica
 	(Id_Cliente, Id_Limitacao)
     VALUES
     ( 1, 1),
-    ( 1, 25),
+    ( 25, 1),
     ( 2, 2),
-    ( 3, 4),
-    ( 3, 30),
-    ( 4, 5),
-    ( 5, 7),
-    ( 6, 8),
-    ( 7, 10),
-	( 8, 1),
-    ( 8, 30);
+    ( 4, 3),
+    ( 30, 3),
+    ( 5, 4),
+    ( 7, 5),
+    ( 8, 6),
+    ( 10, 7),
+	( 1, 8),
+    ( 30, 8);
 
 INSERT INTO Professor
-	(Nome, Data_nascimento, Endereco, Telemovel, Email, Id_localidade)
+	(Nome, Data_nascimento, Endereco, Telemovel, Email, Estado, Id_localidade)
     VALUES
-    ('Joana Antunes', '2000-02-13', 'Rua da Cruz nº 20 4700-880', '916060454', 'joana@gmail.com', 2),
-    ('Carlos Sousa', '1970-06-13', 'Avenida da Liberdade nº67 4700-370', '968571332', 'carlosmsousa@gmail.com', 4),
-    ('Andre Gonçalves', '1990-03-02', 'Rua da Laje nº68 4700-870', '933423322', 'andreg@gmail.com', 2),
-    ('Diogo Costa', '1998-08-12', 'Rua da Cruz nº69 4700-880', '912345334', 'diogoCosta@gmail.com', 2),
-	('Susana Esteves', '1988-04-30', 'Rua de Cedofeita nº81 4700-715', '965403215', 'susana@gmail.com', 1),
-    ('Gonçalo Fernandes', '1976-08-01', 'Rua do Rosário nº3 4706-888', '912564732', 'goncalo@gmail.com', 2),
-    ('Afonso Vieira', '1980-12-02', 'Rua do Loureiro nº7 4700-620','913788014', 'afonso@hotmail.com', 3),
-    ('Raquel Chaves', '1992-03-19', 'Rua de Trás nº54 4700-734', '967222514', 'raquel@gmail.com', 1),
-	('Tiago Freitas', '1993-06-22', 'Rua das Flores nº61 4702-603', '962542361', 'tiago@gmail.com', 3);
+    ('Joana Antunes', '2000-02-13', 'Rua da Cruz nº 20 4700-880', '916060454', 'joana@gmail.com', 'Ativo', 2),
+    ('Carlos Sousa', '1970-06-13', 'Avenida da Liberdade nº67 4700-370', '968571332', 'carlosmsousa@gmail.com', 'Ativo', 4),
+    ('Andre Gonçalves', '1990-03-02', 'Rua da Laje nº68 4700-870', '933423322', 'andreg@gmail.com', 'Ativo', 2),
+    ('Diogo Costa', '1998-08-12', 'Rua da Cruz nº69 4700-880', '912345334', 'diogoCosta@gmail.com', 'Ativo', 2),
+	('Susana Esteves', '1988-04-30', 'Rua de Cedofeita nº81 4700-715', '965403215', 'susana@gmail.com', 'Ativo', 1),
+    ('Gonçalo Fernandes', '1976-08-01', 'Rua do Rosário nº3 4706-888', '912564732', 'goncalo@gmail.com', 'Ativo', 2),
+    ('Afonso Vieira', '1980-12-02', 'Rua do Loureiro nº7 4700-620','913788014', 'afonso@hotmail.com', 'Ativo', 3),
+    ('Raquel Chaves', '1992-03-19', 'Rua de Trás nº54 4700-734', '967222514', 'raquel@gmail.com', 'Ativo', 1),
+	('Tiago Freitas', '1993-06-22', 'Rua das Flores nº61 4702-603', '962542361', 'tiago@gmail.com', 'Ativo', 3);
 
 INSERT INTO Atividade_Fitness
 	(Max_participantes, Nome, Duracao, Sala, Nr_inscritos, Id_professor)
