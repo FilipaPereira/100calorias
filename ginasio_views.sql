@@ -18,8 +18,9 @@ DROP VIEW IF EXISTS view_limitacao_fisica;
 DELIMITER $$
 CREATE VIEW view_limitacao_fisica
 AS
-	SELECT L.Nome AS Nome_Limitação, C.Nome AS Nome_cliente FROM Limitacao_Fisica AS L
-    INNER JOIN Cliente AS C ON C.Id_cliente = L.Id_cliente
+	SELECT C.Nome, L.Nome AS Limitação FROM Cliente AS C
+    INNER JOIN Cliente_Limitacao_Fisica AS CL ON CL.Id_cliente = C.Id_cliente
+    INNER JOIN Limitacao_Fisica AS L ON L.Id_limitacao = CL.Id_limitacao
 $$
 DELIMITER ;
     
@@ -31,8 +32,9 @@ DROP VIEW IF EXISTS view_alunos;
 DELIMITER $$
 CREATE VIEW view_alunos
 AS
-	SELECT C.Nome AS Nome, C.Data_nascimento AS Data, C.Telemovel AS Telemovel, 
-	C.Rua AS Rua, C.Codigo_postal AS Codigo, C.Email AS Email FROM Cliente AS C
+	SELECT C.Nome, T.Numero, C.Data_nascimento, L.Nome AS Localidade, C.Endereco FROM Cliente AS C
+    INNER JOIN Telemovel AS T ON T.Id_cliente = C.Id_cliente
+    INNER JOIN Localidade AS L ON L.Id_localidade = C.Id_localidade
 $$
 DELIMITER ;
     
