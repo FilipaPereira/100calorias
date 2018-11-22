@@ -61,17 +61,37 @@ INSERT INTO Cliente
     ('Gonçalo Soares', '1992-08-30', 'Rua do Fortunato nº40 4700-419', '931381068', 'goncas_soares_08@gmail.com', 3),
     ('Filomena Jesus', '1999-01-27', 'Rua das Carmelitas nº11 4700-302', '961793032','filomena99j@gmail.com', 1);
 
+INSERT INTO Telemovel
+	(Tipo, Numero, Id_Cliente)
+    VALUES 
+    ();
+
 INSERT INTO Limitacao_Fisica
 	(Nome, Id_cliente)
     VALUES
-    ( 'Insuficiencia cardiaca', 1),
-    ( 'Paraplegico', 2),
-    ( 'Tendinite', 4),
-    ( 'Hérnea cervical', 5),
-    ( 'Rompimento da cartilagem', 7),
-    ( 'Osteoperose', 8),
-    ( 'Lesão meniscal', 10),
-	( 'Diabético', 1);
+    ( 'Insuficiencia cardiaca'),
+    ( 'Paraplegico'),
+    ( 'Tendinite'),
+    ( 'Hérnea cervical'),
+    ( 'Rompimento da cartilagem'),
+    ( 'Osteoperose'),
+    ( 'Lesão meniscal'),
+	( 'Diabético');
+    
+INSERT INTO Cliente_Limitacao_Fisica
+	(Id_Cliente, Id_Limitacao)
+    VALUES
+    ( 1, 1),
+    ( 1, 25),
+    ( 2, 2),
+    ( 3, 4),
+    ( 3, 30),
+    ( 4, 5),
+    ( 5, 7),
+    ( 6, 8),
+    ( 7, 10),
+	( 8, 1),
+    ( 8, 30);
 
 INSERT INTO Professor
 	(Nome, Data_nascimento, Endereco, Telemovel, Email, Id_localidade)
