@@ -106,7 +106,6 @@ DELIMITER ;
 
 CALL atividades_professor ('Andre Gonçalves');
 
-
 -- Devolver os planos elaborados por um professor ordenados pelo preço
 DROP PROCEDURE IF EXISTS planos_professor;
 
