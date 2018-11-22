@@ -65,6 +65,67 @@ CALL inserir_cliente('Nadia Santos', '2018-09-12', 'Rua Santa Clar 4830-780', 'S
 select *
 from Cliente;
 
+-- Inserir um telemovel
+DROP PROCEDURE IF EXISTS inserir_telemovel;
+
+DELIMITER $$
+CREATE PROCEDURE inserir_telemovel(IN tipo VARCHAR(45), IN numero CHAR(9), IN nome VARCHAR(45))
+
+		BEGIN
+		Declare erro Bool default 0;
+		declare continue handler for SQLEXCEPTION set erro = 1; 
+        start transaction;
+        set @A:=0;
+		SELECT @A:= C.Id_cliente FROM Cliente AS C where C.Nome = nome;
+		INSERT INTO Telemovel(Tipo, Numero, Id_cliente)
+				VALUE (tipo, numero, @A);
+        	if erro then ROLLBACK;
+    else commit;
+    
+    END IF;
+        
+END $$  
+DELIMITER ;
+
+CALL inserir_telemovel('Pessoal', '968471446', 'Ana Maria');
+
+select *
+from telemovel;
+
+-- Inserir limitação física
+DROP PROCEDURE IF EXISTS inserir_limitacao;
+
+DELIMITER $$
+CREATE PROCEDURE inserir_limitacao(IN nomeLimitacao VARCHAR(45), IN nomeCliente VARCHAR(45))
+		BEGIN
+		Declare erro Bool default 0;
+		declare continue handler for SQLEXCEPTION set erro = 1; 
+		start transaction;
+        set @A:=0;
+        SELECT @A:= L.Id_Limitacao FROM Limitacao_fisica AS L where L.Nome = nomeLimitacao;
+		IF(@A = 0) THEN 
+		INSERT INTO Limitacao_Fisica(Nome)
+				VALUE (nomeLimitacao);
+		SELECT @A:= L.Id_Limitacao FROM Limitacao_fisica AS L where L.Nome = nomeLimitacao;
+		END IF;
+		SELECT @B:= C.Id_cliente FROM Cliente AS C where C.Nome = nomeCliente;
+        INSERT INTO Cliente_Limitacao_Fisica(Id_cliente, Id_Limitacao)
+				VALUE (@B,@A);
+        	if erro then ROLLBACK;
+    else commit;
+    
+    END IF;
+        
+END $$  
+DELIMITER ;
+
+CALL inserir_limitacao('Tendinite', 'Ana Maria');
+
+select * FROM cliente AS C 
+INNER JOIN cliente_limitacao_fisica AS CL ON CL.Id_cliente = C.Id_cliente
+INNER JOIN limitacao_fisica AS L ON L.Id_Limitacao = CL.Id_limitacao
+where C.Nome = 'Ana Maria';
+
 -- Inserir um plano
 DROP PROCEDURE IF EXISTS inserir_plano;
 
@@ -93,3 +154,29 @@ CALL inserir_plano(35,'2018-02-01','Joana Antunes', 'Ana Maria');
 
 select *
 from Plano;
+
+-- Inserir atividade ao plano
+DROP PROCEDURE IF EXISTS inserir_atividade_plano;
+
+DELIMITER $$
+CREATE PROCEDURE inserir_atividade_plano(IN numAulas INT, IN id_plano INT, IN nome VARCHAR(45))
+		BEGIN
+		Declare erro Bool default 0;
+		declare continue handler for SQLEXCEPTION set erro = 1; 
+        start transaction;
+		set @A:=0;
+		SELECT @A:= AF.Id_atividade FROM Atividade_Fitness AS AF where AF.Nome = nome;
+		INSERT INTO Plano_Atividade_Fitness(Nr_aulas, Id_plano, Id_atividade)
+				VALUE (numAulas, id_plano, @A);
+        	if erro then ROLLBACK;
+    else commit;
+    
+    END IF;
+        
+END $$  
+DELIMITER ;
+
+CALL inserir_atividade_plano(20,2,'Hiit');
+
+select * 
+from plano_atividade_fitness;
