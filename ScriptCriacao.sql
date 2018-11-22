@@ -185,7 +185,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `ginasio`.`Telemovel` (
   `Id_telemovel` INT NOT NULL AUTO_INCREMENT,
   `Tipo` VARCHAR(45) NOT NULL,
-  `Numero` VARCHAR(45) NOT NULL,
+  `Numero` CHAR(9) NOT NULL,
   `Id_cliente` INT NOT NULL,
   PRIMARY KEY (`Id_telemovel`, `Id_cliente`),
   INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC),
