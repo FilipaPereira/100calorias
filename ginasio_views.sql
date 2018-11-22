@@ -4,9 +4,9 @@ DROP VIEW IF EXISTS view_maquinas;
 DELIMITER $$
 CREATE VIEW view_maquinas
 AS
-	SELECT A.Nome, M.Tipo, AM.Nr_maquinas AS QtUtilizada, M.Quantidade AS QtDisponivel FROM maquina AS M
-    INNER JOIN atividade_fitness_maquina AS AM ON AM.Id_maquina = M.Id_maquina
-    INNER JOIN atividade_fitness AS A ON A.Id_atividade = AM.Id_atividade;
+	SELECT A.Nome, M.Tipo, AM.Nr_maquinas AS QtUtilizada, M.Quantidade AS QtDisponivel FROM Maquina AS M
+    INNER JOIN Atividade_Fitness_Maquina AS AM ON AM.Id_maquina = M.Id_maquina
+    INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = AM.Id_atividade;
 $$
 DELIMITER ;
     
@@ -47,7 +47,7 @@ DROP VIEW IF EXISTS view_atividades;
 DELIMITER $$
 CREATE VIEW view_atividades
 AS
-	SELECT A.Nr_participantes AS NumeroParticipantes, A.Nome AS Atividade,
+	SELECT A.Nr_inscritos AS NumeroParticipantes, A.Max_participantes AS MaxParticipantes, A.Nome AS Atividade,
     A.Duracao AS Duracao, A.Sala AS Sala FROM Atividade_Fitness AS A
     INNER JOIN Professor AS P ON P.Id_professor = A.Id_professor
 $$
@@ -61,7 +61,7 @@ DROP VIEW IF EXISTS view_plano;
 DELIMITER $$
 CREATE VIEW view_plano
 AS
-	SELECT P.Id_plano AS Id_Plano, P.preco AS Preco, P.data_inicio AS Data_Inicio,
+	SELECT P.Id_plano AS Id_Plano, P.preco AS Preco, P.data_inicio AS Data_Inicio, P.Estado AS Estado,
 	PR.Nome AS Professor, C.Nome AS Cliente FROM Plano AS P
     INNER JOIN Professor AS PR ON PR.Id_professor = P.Id_professor
     INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
