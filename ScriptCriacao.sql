@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente` (
   `Nome` VARCHAR(45) NOT NULL,
   `Data_nascimento` DATE NOT NULL,
   `Endereco` VARCHAR(45) NOT NULL,
-  `Telemovel` CHAR(9) NOT NULL,
   `Id_localidade` INT NOT NULL,
   PRIMARY KEY (`Id_cliente`, `Id_localidade`),
   INDEX `fk_Cliente_Localidade1_idx` (`Id_localidade` ASC),
