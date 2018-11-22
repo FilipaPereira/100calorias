@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente` (
     FOREIGN KEY (`Id_localidade`)
     REFERENCES `ginasio`.`Localidade` (`Id_localidade`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Professor` (
     FOREIGN KEY (`Id_localidade`)
     REFERENCES `ginasio`.`Localidade` (`Id_localidade`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Telemovel` (
   `Numero` VARCHAR(45) NOT NULL,
   `Id_cliente` INT NOT NULL,
   PRIMARY KEY (`Id_telemovel`, `Id_cliente`),
-  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC),
+  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_Telemovel_Cliente1`
     FOREIGN KEY (`Id_cliente`)
     REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
