@@ -41,11 +41,10 @@ GROUP BY A.Id_atividade
 ORDER BY Nr_inscritos DESC
 LIMIT 3;
 
--- Identificar o professor que elaborou mais planos
+-- Identificar os planos elaborados por cada professor 
 SELECT count(P.Id_plano) AS Nr_planos, Id_professor FROM Plano AS P
 GROUP BY P.Id_professor
-ORDER BY Nr_planos DESC
-LIMIT 1;
+ORDER BY Nr_planos DESC;
 
 -- Reconhecer o professor que lecionou mais atividades
 SELECT count(A.Id_professor) AS Nr_atividades, P.Nome FROM Atividade_Fitness AS A
@@ -53,8 +52,6 @@ INNER JOIN Professor AS P ON P.Id_professor = A.Id_professor
 GROUP BY A.Id_professor
 ORDER BY Nr_atividades DESC
 LIMIT 1;
-
--- Conhecer o número de clientes inscritos numa atividade fitness ------> Tirei porque se vai mudar e é direto do nr de participantes!
 
 -- Atividade fitness mais frequentada por um determinado aluno
 DROP PROCEDURE IF EXISTS atividade_frequentada
@@ -80,8 +77,7 @@ SELECT A.Nome, sum(M.Quantidade) AS QuantidadeMaquina, M.Tipo AS TipoMaquina
 FROM Maquina AS M
 INNER JOIN Atividade_Fitness_Maquina AS AM ON AM.Id_maquina = M.Id_maquina
 INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = AM.Id_atividade
-GROUP BY A.Nome, M.Tipo, M.Quantidade
-ORDER BY M.Quantidade DESC;
+GROUP BY A.Nome, M.Tipo, M.Quantidade;
 
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
 SELECT sum(PA.Nr_aulas) AS Nr_aulas, C.Nome FROM Plano_Atividade_Fitness AS PA
