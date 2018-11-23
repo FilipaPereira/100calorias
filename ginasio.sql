@@ -154,10 +154,3 @@ CALL estado_planos('Marco Paulo', 'Inativo');
 -- Obter todos os alunos atuais numa dada atividade
 SELECT A.Max_participantes AS Inscritos FROM Atividade_Fitness AS A
 WHERE A.Nome = 'Pilates';
-
--- Top 3 de maquinas mais usados pelos clientes com limitaçoes fisicas
--- Busca ids dos clientes com limitaçoes fisicas
-SELECT DISTINCT C.Id_cliente FROM Limitacao_Fisica AS L
-INNER JOIN Cliente_Limitacao_Fisica AS CL ON CL.Id_Limitacao = L.Id_Limitacao
-INNER JOIN Cliente AS C ON C.Id_cliente = CL.Id_cliente
-ORDER BY Id_cliente;
