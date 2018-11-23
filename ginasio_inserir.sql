@@ -90,7 +90,7 @@ DELIMITER ;
 CALL inserir_telemovel('Pessoal', '968471446', 'Ana Maria');
 
 select *
-from telemovel;
+from Telemovel;
 
 -- Inserir limitação física
 DROP PROCEDURE IF EXISTS inserir_limitacao;
@@ -121,9 +121,9 @@ DELIMITER ;
 
 CALL inserir_limitacao('Tendinite', 'Ana Maria');
 
-select * FROM cliente AS C 
-INNER JOIN cliente_limitacao_fisica AS CL ON CL.Id_cliente = C.Id_cliente
-INNER JOIN limitacao_fisica AS L ON L.Id_Limitacao = CL.Id_limitacao
+select * FROM Cliente AS C 
+INNER JOIN Cliente_Limitacao_Fisica AS CL ON CL.Id_cliente = C.Id_cliente
+INNER JOIN Limitacao_Fisica AS L ON L.Id_Limitacao = CL.Id_limitacao
 where C.Nome = 'Ana Maria';
 
 -- Inserir um plano
@@ -182,7 +182,7 @@ DELIMITER ;
 CALL inserir_atividade_plano(20,2,'Hiit');
 
 select * 
-from plano_atividade_fitness;
+from Plano_Atividade_Fitness;
 
 DROP trigger update_participantes
 
@@ -198,4 +198,4 @@ END
 $$
 
 select *
-from atividade_fitness;
+from Atividade_Fitness;
