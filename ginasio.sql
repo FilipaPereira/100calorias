@@ -27,9 +27,10 @@ DELIMITER ;
 
 CALL planos_cliente ('Ana Maria');
 
--- Identificar o Top 3 de clientes com maior número de planos associados (meter os nomes em vez dos ids??)
-SELECT count(P.Id_plano) AS Nr_Planos, P.Id_cliente FROM Plano AS P
-GROUP BY P.Id_cliente
+-- Identificar o Top 3 de clientes com maior número de planos associados
+SELECT count(P.Id_plano) AS Nr_Planos, C.Nome FROM Plano AS P
+INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
+GROUP BY C.Nome
 ORDER BY Nr_planos DESC
 LIMIT 3;
 
@@ -42,9 +43,10 @@ GROUP BY A.Id_atividade
 ORDER BY Nr_inscritos DESC
 LIMIT 3;
 
--- Identificar os planos elaborados por cada professor (meter nome do prof??)
-SELECT count(P.Id_plano) AS Nr_Planos, Id_professor FROM Plano AS P
-GROUP BY P.Id_professor
+-- Identificar os planos elaborados por cada professor
+SELECT count(P.Id_plano) AS Nr_Planos, PR.Nome FROM Plano AS P
+INNER JOIN Professor AS PR ON PR.Id_professor = P.Id_professor
+GROUP BY PR.Nome
 ORDER BY Nr_planos DESC;
 
 -- Reconhecer o professor que lecionou mais atividades
@@ -81,7 +83,7 @@ INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = AM.Id_atividade
 GROUP BY A.Nome, M.Tipo, M.Quantidade;
 
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
-SELECT sum(PA.Nr_aulas) AS Nr_aulas, C.Nome AS Cliente FROM Plano_Atividade_Fitness AS PA
+SELECT sum(PA.Nr_aulas) AS Nr_Aulas, C.Nome AS Cliente FROM Plano_Atividade_Fitness AS PA
 INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano
 INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = PA.Id_atividade
 INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
@@ -130,7 +132,7 @@ INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano
 INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
 INNER JOIN Telemovel AS T ON C.Id_cliente = T.Id_cliente
 WHERE P.Estado = 'Ativo'
-			  AND A.Nome = nome_atividade;
+AND A.Nome = nome_atividade;
 END $$
 DELIMITER ;
 
