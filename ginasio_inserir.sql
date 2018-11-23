@@ -90,7 +90,7 @@ DELIMITER ;
 CALL inserir_telemovel('Pessoal', '968471446', 'Ana Maria');
 
 select *
-from Telemovel;
+from telemovel;
 
 -- Inserir limitação física
 DROP PROCEDURE IF EXISTS inserir_limitacao;
@@ -121,9 +121,9 @@ DELIMITER ;
 
 CALL inserir_limitacao('Tendinite', 'Ana Maria');
 
-select * FROM Cliente AS C 
-INNER JOIN Cliente_Limitacao_Fisica AS CL ON CL.Id_cliente = C.Id_cliente
-INNER JOIN Limitacao_Fisica AS L ON L.Id_Limitacao = CL.Id_limitacao
+select * FROM cliente AS C 
+INNER JOIN cliente_limitacao_fisica AS CL ON CL.Id_cliente = C.Id_cliente
+INNER JOIN limitacao_fisica AS L ON L.Id_Limitacao = CL.Id_limitacao
 where C.Nome = 'Ana Maria';
 
 -- Inserir um plano
@@ -165,12 +165,15 @@ CREATE PROCEDURE inserir_atividade_plano(IN numAulas INT, IN id_plano INT, IN no
 		declare continue handler for SQLEXCEPTION set erro = 1; 
         start transaction;
 		set @A:=0;
-		SELECT @A:= AF.Id_atividade FROM Atividade_Fitness AS AF where AF.Nome = nome;
-		INSERT INTO Plano_Atividade_Fitness(Nr_aulas, Id_plano, Id_atividade)
+        set @B:=0;
+        set @C:=0;
+		SELECT @A:= AF.Id_atividade, @B:= AF.Max_participantes, @C:= AF.Nr_inscritos FROM Atividade_Fitness AS AF where AF.Nome = nome;
+		IF(@B > @C) THEN
+			INSERT INTO Plano_Atividade_Fitness(Nr_aulas, Id_plano, Id_atividade)
 				VALUE (numAulas, id_plano, @A);
+		END IF;
         	if erro then ROLLBACK;
-    else commit;
-    
+			else commit;
     END IF;
         
 END $$  
@@ -179,4 +182,20 @@ DELIMITER ;
 CALL inserir_atividade_plano(20,2,'Hiit');
 
 select * 
-from Plano_Atividade_Fitness;
+from plano_atividade_fitness;
+
+DROP trigger update_participantes
+
+DELIMITER $$
+CREATE TRIGGER update_participantes
+AFTER INSERT ON plano_atividade_fitness
+FOR EACH ROW
+BEGIN
+	UPDATE Atividade_fitness
+    SET Nr_inscritos = Nr_inscritos + 1
+    WHERE Id_atividade = @A;
+END
+$$
+
+select *
+from atividade_fitness;
