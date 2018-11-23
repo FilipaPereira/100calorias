@@ -17,7 +17,7 @@ WHERE A.Id_atividade = 7;
 DROP PROCEDURE IF EXISTS planos_cliente
 
 DELIMITER $$
-CREATE PROCEDURE planos_cliente (nome_cliente VARCHAR(45)) 
+CREATE PROCEDURE planos_cliente (IN nome_cliente VARCHAR(45)) 
 BEGIN
 SELECT P.Id_plano, P.Preco, P.Data_inicio FROM Cliente AS C
 INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
@@ -59,7 +59,7 @@ LIMIT 1;
 -- Atividade fitness mais frequentada por um determinado aluno
 DROP PROCEDURE IF EXISTS atividade_frequentada
 DELIMITER $$
-CREATE PROCEDURE atividade_frequentada (nome_aluno VARCHAR(45)) 
+CREATE PROCEDURE atividade_frequentada (IN nome_aluno VARCHAR(45)) 
 BEGIN
 SELECT C.Nome, sum(PA.Nr_aulas) AS Nr_Aulas, A.Nome AS Atividade FROM Cliente AS C
 INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
@@ -95,7 +95,7 @@ LIMIT 3;
 -- As atividades fitness dadas por um professor 
 DROP PROCEDURE IF EXISTS atividades_professor;
 DELIMITER $$
-CREATE PROCEDURE atividades_professor (nome_professor VARCHAR(45)) 
+CREATE PROCEDURE atividades_professor (IN nome_professor VARCHAR(45)) 
 BEGIN
 SELECT A.Nome FROM Professor AS P
 INNER JOIN Atividade_Fitness AS A ON A.Id_professor = P.Id_professor
@@ -109,7 +109,7 @@ CALL atividades_professor ('Andre Gonçalves');
 DROP PROCEDURE IF EXISTS planos_professor;
 
 DELIMITER $$
-CREATE PROCEDURE planos_professor (nome_professor VARCHAR(45)) 
+CREATE PROCEDURE planos_professor (IN nome_professor VARCHAR(45)) 
 BEGIN
 SELECT PL.Preco , C.Nome AS NomeCliente FROM Professor AS P
 INNER JOIN Plano AS PL ON PL.Id_professor = P.Id_professor
@@ -124,7 +124,7 @@ CALL planos_professor ('Andre Gonçalves');
 -- Nomes e contactos dos alunos que frequentam certa atividade
 DROP PROCEDURE IF EXISTS alunos_atividade
 DELIMITER $$
-CREATE PROCEDURE alunos_atividade (nome_atividade VARCHAR(45)) 
+CREATE PROCEDURE alunos_atividade (IN nome_atividade VARCHAR(45)) 
 BEGIN
 SELECT C.Nome, T.Numero, T.Tipo FROM Atividade_Fitness AS A
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_atividade = A.Id_atividade
@@ -142,7 +142,7 @@ CALL alunos_atividade('Cycling');
 -- Ver quais os planos que ja foram realizados por um dado cliente com determinado estado (ativo ou inativo)
 DROP PROCEDURE IF EXISTS estado_planos
 DELIMITER $$
-CREATE PROCEDURE estado_planos (nome_cliente VARCHAR(45), estado VARCHAR(45)) 
+CREATE PROCEDURE estado_planos (IN nome_cliente VARCHAR(45), IN estado VARCHAR(45)) 
 BEGIN
 SELECT P.Id_plano, P.Preco, P.Data_inicio AS Inicio FROM Cliente AS C
 INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
@@ -154,5 +154,5 @@ DELIMITER ;
 CALL estado_planos('Marco Paulo', 'Inativo');
 
 -- Obter todos os alunos atuais numa dada atividade
-SELECT A.Max_participantes AS Inscritos FROM Atividade_Fitness AS A
+SELECT A.Nr_inscritos AS Inscritos FROM Atividade_Fitness AS A
 WHERE A.Nome = 'Pilates';
