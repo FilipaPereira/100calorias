@@ -210,12 +210,12 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Cliente_Limitacao_Fisica` (
     FOREIGN KEY (`Id_cliente`)
     REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Cliente_has_Limitacao_Fisica_Limitacao_Fisica1`
     FOREIGN KEY (`Id_Limitacao`)
     REFERENCES `ginasio`.`Limitacao_Fisica` (`Id_Limitacao`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
