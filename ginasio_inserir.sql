@@ -229,7 +229,7 @@ CALL inserir_atividade_plano(20,2,'Hiit');
 select * 
 from Plano_Atividade_Fitness;
 
-DROP trigger update_participantesIncrementa
+DROP trigger IF EXISTS update_participantesIncrementa
 
 DELIMITER $$
 CREATE TRIGGER update_participantesIncrementa
@@ -243,7 +243,7 @@ END
 $$
 DELIMITER ;
 
-DROP PROCEDURE decrementaInscritos;
+DROP PROCEDURE IF EXISTS decrementaInscritos;
 
 DELIMITER $$
 CREATE PROCEDURE decrementaInscritos (id_plano INT) 
@@ -264,7 +264,7 @@ END
 $$
 DELIMITER ;
 
-DROP trigger update_participantesIncrementa;
+DROP trigger IF EXISTS update_participantesIncrementa;
 
 DELIMITER $$
 CREATE TRIGGER update_participantesIncrementa
@@ -277,3 +277,33 @@ $$
 DELIMITER ;
 
 CALL arquivar_plano(3);
+
+DROP PROCEDURE IF EXISTS aumentarQt_maquina;
+
+DELIMITER $$
+CREATE PROCEDURE aumentarQt_maquina(IN tipo VARCHAR(45), IN qt INT)
+		BEGIN
+        SELECT @F:= Maquina.Id_maquina FROM Maquina WHERE Maquina.Tipo = tipo; 
+        UPDATE Maquina
+		SET Maquina.Quantidade = Maquina.Quantidade + qt  
+        WHERE Maquina.Id_maquina = @F; 
+        
+END $$  
+DELIMITER ;
+
+CALL aumentarQt_maquina('Passadeira', 20);
+
+DROP PROCEDURE IF EXISTS diminuirQt_maquina;
+
+DELIMITER $$
+CREATE PROCEDURE diminuirQt_maquina(IN tipo VARCHAR(45), IN qt INT)
+		BEGIN
+        SELECT @F:= Maquina.Id_maquina FROM Maquina WHERE Maquina.Tipo = tipo; 
+        UPDATE Maquina
+		SET Maquina.Quantidade = Maquina.Quantidade - qt  
+        WHERE Maquina.Id_maquina = @F; 
+        
+END $$  
+DELIMITER ;
+
+CALL diminuirQt_maquina('Passadeira', 20);
