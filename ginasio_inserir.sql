@@ -27,6 +27,29 @@ DELIMITER ;
 
 CALL inserir_professor('Claudia Cruz', '1993-09-01', 'Rua Penedo da Marca Nº39 4715-603', '928333999', 'claudiacruz@gmail.com', 'Braga');
 
+DROP PROCEDURE arquivar_professor;
+
+DELIMITER $$
+CREATE PROCEDURE arquivar_professor(IN nome VARCHAR(45))
+		BEGIN
+		Declare erro Bool default 0;
+		declare continue handler for SQLEXCEPTION set erro = 1; 
+        start transaction;
+        set @H:=0;
+		SELECT @H:= P.Id_professor FROM Professor AS P where P.Nome = nome;
+        UPDATE Professor
+        SET Professor.Estado = 'Inativo'
+        Where Professor.Id_professor = @H;
+        	if erro then ROLLBACK;
+    else commit;
+    
+    END IF;
+        
+END $$  
+DELIMITER ;
+
+CALL arquivar_professor('Diogo Costa');
+
 select *
 from Professor;
 
@@ -152,6 +175,28 @@ DELIMITER ;
 
 CALL inserir_plano(35,'2018-02-01','Joana Antunes', 'Ana Maria');
 
+DROP PROCEDURE arquivar_plano;
+
+DELIMITER $$
+CREATE PROCEDURE arquivar_plano(IN id INT)
+		BEGIN
+		Declare erro Bool default 0;
+		declare continue handler for SQLEXCEPTION set erro = 1; 
+        start transaction;
+        set @K = id;
+        UPDATE Plano
+        SET Plano.Estado = 'Inativo'
+        Where Plano.Id_plano = id AND Plano.Estado = 'Ativo';
+        	if erro then ROLLBACK;
+    else commit;
+    
+    END IF;
+        
+END $$  
+DELIMITER ;
+
+CALL arquivar_plano(6);
+
 select *
 from Plano;
 
@@ -184,10 +229,10 @@ CALL inserir_atividade_plano(20,2,'Hiit');
 select * 
 from Plano_Atividade_Fitness;
 
-DROP trigger update_participantes
+DROP trigger update_participantesIncrementa
 
 DELIMITER $$
-CREATE TRIGGER update_participantes
+CREATE TRIGGER update_participantesIncrementa
 AFTER INSERT ON plano_atividade_fitness
 FOR EACH ROW
 BEGIN
@@ -196,6 +241,39 @@ BEGIN
     WHERE Id_atividade = @A;
 END
 $$
+DELIMITER ;
 
-select *
-from Atividade_Fitness;
+DROP PROCEDURE decrementaInscritos;
+
+DELIMITER $$
+CREATE PROCEDURE decrementaInscritos (id_plano INT) 
+BEGIN
+	declare contador INT;
+	SET @I := 1;
+	while(@I <= (SELECT MAX(Id_atividade) FROM plano_atividade_fitness)) DO
+        SELECT count(PA.Id_atividade) into contador FROM plano_atividade_fitness AS PA 
+			where PA.Id_plano = id_plano AND PA.Id_atividade = @I;
+		IF (contador>0) THEN
+			UPDATE Atividade_fitness
+			SET Nr_inscritos = Nr_inscritos - 1
+			WHERE Id_atividade =@I ;
+        END IF;
+        SET @I := @I +1;
+        END WHILE;
+END
+$$
+DELIMITER ;
+
+DROP trigger update_participantesIncrementa;
+
+DELIMITER $$
+CREATE TRIGGER update_participantesIncrementa
+AFTER UPDATE ON plano
+for each row
+BEGIN
+     CALL teste (@K);
+END
+$$
+DELIMITER ;
+
+CALL arquivar_plano(3);
