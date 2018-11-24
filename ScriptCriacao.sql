@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Telemovel` (
   `Numero` CHAR(9) NOT NULL,
   `Id_cliente` INT NOT NULL,
   PRIMARY KEY (`Id_telemovel`, `Id_cliente`),
-  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC) VISIBLE,
+  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC),
   CONSTRAINT `fk_Telemovel_Cliente1`
     FOREIGN KEY (`Id_cliente`)
     REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
