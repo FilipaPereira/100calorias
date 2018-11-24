@@ -74,14 +74,6 @@ DELIMITER ;
 
 CALL atividade_frequentada('Carolina Pinto');
 
-
--- Tipo e quantidade de maquinas em cada atividade 
-SELECT A.Nome, sum(M.Quantidade) AS QuantidadeMaquina, M.Tipo AS TipoMaquina 
-FROM Maquina AS M
-INNER JOIN Atividade_Fitness_Maquina AS AM ON AM.Id_maquina = M.Id_maquina
-INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = AM.Id_atividade
-GROUP BY A.Nome, M.Tipo, M.Quantidade;
-
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
 SELECT sum(PA.Nr_aulas) AS Nr_Aulas, C.Nome AS Cliente FROM Plano_Atividade_Fitness AS PA
 INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano
