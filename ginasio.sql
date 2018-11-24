@@ -57,22 +57,14 @@ ORDER BY Nr_atividades DESC
 LIMIT 1;
 
 -- Atividade fitness mais frequentada por um determinado aluno
-DROP PROCEDURE IF EXISTS atividade_frequentada
-DELIMITER $$
-CREATE PROCEDURE atividade_frequentada (IN nome_aluno VARCHAR(45)) 
-BEGIN
-SELECT C.Nome, sum(PA.Nr_aulas) AS Nr_Aulas, A.Nome AS Atividade FROM Cliente AS C
+SELECT sum(PA.Nr_aulas) AS Nr_Aulas, A.Nome AS Atividade FROM Cliente AS C
 INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_plano = P.Id_plano
 INNER JOIN Atividade_Fitness AS A ON PA.Id_atividade = A.Id_atividade
-WHERE C.Nome = nome_aluno
-GROUP BY A.Nome, PA.Nr_aulas
+WHERE C.Nome = 'Carolina Pinto'
+GROUP BY A.Id_atividade
 ORDER BY PA.Nr_aulas DESC
 LIMIT 1;
-END $$
-DELIMITER ;
-
-CALL atividade_frequentada('Carolina Pinto');
 
 -- Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
 SELECT sum(PA.Nr_aulas) AS Nr_Aulas, C.Nome AS Cliente FROM Plano_Atividade_Fitness AS PA
@@ -133,6 +125,7 @@ CALL alunos_atividade('Cycling');
 
 -- Ver quais os planos que ja foram realizados por um dado cliente com determinado estado (ativo ou inativo)
 DROP PROCEDURE IF EXISTS estado_planos
+
 DELIMITER $$
 CREATE PROCEDURE estado_planos (IN nome_cliente VARCHAR(45), IN estado VARCHAR(45)) 
 BEGIN
