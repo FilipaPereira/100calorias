@@ -19,7 +19,7 @@ DROP PROCEDURE IF EXISTS planos_cliente
 DELIMITER $$
 CREATE PROCEDURE planos_cliente (IN nome_cliente VARCHAR(45)) 
 BEGIN
-SELECT P.Id_plano, P.Preco, P.Data_inicio FROM Cliente AS C
+SELECT P.Id_plano AS ID, P.Preco, P.Data_inicio AS Inicio, P.Estado FROM Cliente AS C
 INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
 WHERE C.Nome = nome_cliente;
 END $$
@@ -43,7 +43,7 @@ GROUP BY A.Id_atividade
 ORDER BY Nr_inscritos DESC
 LIMIT 3;
 
--- Identificar os planos elaborados por cada professor
+-- Identificar o número de planos elaborados por cada professor
 SELECT count(P.Id_plano) AS Nr_Planos, PR.Nome FROM Plano AS P
 INNER JOIN Professor AS PR ON PR.Id_professor = P.Id_professor
 GROUP BY PR.Nome
@@ -62,7 +62,7 @@ INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_plano = P.Id_plano
 INNER JOIN Atividade_Fitness AS A ON PA.Id_atividade = A.Id_atividade
 WHERE C.Nome = 'Carolina Pinto'
-GROUP BY A.Id_atividade
+GROUP BY A.Id_atividade, Nr_Aulas
 ORDER BY PA.Nr_aulas DESC
 LIMIT 1;
 
@@ -95,7 +95,7 @@ DROP PROCEDURE IF EXISTS planos_professor;
 DELIMITER $$
 CREATE PROCEDURE planos_professor (IN nome_professor VARCHAR(45)) 
 BEGIN
-SELECT PL.Preco , C.Nome AS NomeCliente FROM Professor AS P
+SELECT PL.Preco , C.Nome AS Cliente FROM Professor AS P
 INNER JOIN Plano AS PL ON PL.Id_professor = P.Id_professor
 INNER JOIN Cliente AS C ON C.Id_cliente = PL.Id_cliente
 WHERE P.Nome = nome_professor
@@ -110,7 +110,7 @@ DROP PROCEDURE IF EXISTS alunos_atividade
 DELIMITER $$
 CREATE PROCEDURE alunos_atividade (IN nome_atividade VARCHAR(45)) 
 BEGIN
-SELECT C.Nome, T.Numero, T.Tipo FROM Atividade_Fitness AS A
+SELECT C.Nome AS Cliente, T.Numero, T.Tipo FROM Atividade_Fitness AS A
 INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_atividade = A.Id_atividade
 INNER JOIN Plano AS P ON P.Id_plano = PA.Id_plano
 INNER JOIN Cliente AS C ON C.Id_cliente = P.Id_cliente
@@ -141,3 +141,16 @@ CALL estado_planos('Marco Paulo', 'Inativo');
 -- Obter todos os alunos atuais numa dada atividade
 SELECT A.Nr_inscritos AS Inscritos FROM Atividade_Fitness AS A
 WHERE A.Nome = 'Pilates';
+
+-- Top 3 de maquinas mais usados pelos clientes com limitaçoes fisicas
+SELECT M.Tipo AS Tipo, count(M.Id_maquina) AS Nr_Maquinas FROM Limitacao_Fisica AS L
+INNER JOIN Cliente_Limitacao_Fisica AS CL ON CL.Id_Limitacao = L.Id_Limitacao
+INNER JOIN Cliente AS C ON C.Id_cliente = CL.Id_cliente
+INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
+INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_plano = P.Id_plano
+INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = PA.Id_atividade
+INNER JOIN Atividade_Fitness_Maquina AS AM ON AM.Id_atividade = A.Id_atividade
+INNER JOIN Maquina AS M ON M.Id_maquina = AM.Id_maquina
+GROUP BY Tipo, Nr_Maquinas
+ORDER BY Nr_Maquinas DESC
+LIMIT 3;
