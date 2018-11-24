@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Professor` (
   `Data_nascimento` DATE NOT NULL,
   `Telemovel` CHAR(9) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `Estado` VARCHAR(45) NOT NULL,
+  `Estado` VARCHAR(7) NOT NULL,
   `Id_localidade` INT NOT NULL,
   PRIMARY KEY (`Id_professor`),
   INDEX `fk_Professor_Localidade1_idx` (`Id_localidade` ASC),
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Plano` (
   `Id_plano` INT NOT NULL AUTO_INCREMENT,
   `Preco` DOUBLE NOT NULL,
   `Data_inicio` DATE NOT NULL,
-  `Estado` VARCHAR(45) NOT NULL,
+  `Estado` VARCHAR(7) NOT NULL,
   `Id_cliente` INT NOT NULL,
   `Id_professor` INT NOT NULL,
   PRIMARY KEY (`Id_plano`),
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `ginasio`.`Telemovel` (
   `Numero` CHAR(9) NOT NULL,
   `Id_cliente` INT NOT NULL,
   PRIMARY KEY (`Id_telemovel`, `Id_cliente`),
-  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC),
+  INDEX `fk_Telemovel_Cliente1_idx` (`Id_cliente` ASC) VISIBLE,
   CONSTRAINT `fk_Telemovel_Cliente1`
     FOREIGN KEY (`Id_cliente`)
     REFERENCES `ginasio`.`Cliente` (`Id_cliente`)
