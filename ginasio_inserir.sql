@@ -83,7 +83,7 @@ CREATE PROCEDURE inserir_cliente(IN nome VARCHAR(45), IN datanascimento DATE, IN
 END $$  
 DELIMITER ;
 
-CALL inserir_cliente('Nadia Santos', '2018-09-12', 'Rua Santa Clar 4830-780', 'Souto');
+CALL inserir_cliente('Nadia Santos', '1998-09-12', 'Rua Santa Clara 4700-522', 'Souto');
 
 select *
 from Cliente;
@@ -125,7 +125,7 @@ CREATE PROCEDURE inserir_limitacao(IN nomeLimitacao VARCHAR(45), IN nomeCliente 
 		declare continue handler for SQLEXCEPTION set erro = 1; 
 		start transaction;
         set @A:=0;
-        SELECT @A:= L.Id_Limitacao FROM Limitacao_fisica AS L where L.Nome = nomeLimitacao;
+        SELECT @A:= L.Id_Limitacao FROM Limitacao_Fisica AS L where L.Nome = nomeLimitacao;
 		IF(@A = 0) THEN 
 		INSERT INTO Limitacao_Fisica(Nome)
 				VALUE (nomeLimitacao);
@@ -142,12 +142,14 @@ CREATE PROCEDURE inserir_limitacao(IN nomeLimitacao VARCHAR(45), IN nomeCliente 
 END $$  
 DELIMITER ;
 
-CALL inserir_limitacao('Tendinite', 'Ana Maria');
+CALL inserir_limitacao('Tendinite', 'Marco Paulo');
+
+select * FROM Cliente;
 
 select * FROM Cliente AS C 
 INNER JOIN Cliente_Limitacao_Fisica AS CL ON CL.Id_cliente = C.Id_cliente
 INNER JOIN Limitacao_Fisica AS L ON L.Id_Limitacao = CL.Id_limitacao
-where C.Nome = 'Ana Maria';
+where C.Nome = 'Marco Paulo';
 
 -- Inserir um plano
 DROP PROCEDURE IF EXISTS inserir_plano;
@@ -173,7 +175,7 @@ CREATE PROCEDURE inserir_plano(IN preco DOUBLE, IN datainicio DATE, IN nomeprof 
 END $$  
 DELIMITER ;
 
-CALL inserir_plano(35,'2018-02-01','Joana Antunes', 'Ana Maria');
+CALL inserir_plano(35,'2018-10-19','Joana Antunes', 'Ana Maria');
 
 DROP PROCEDURE arquivar_plano;
 
@@ -195,7 +197,7 @@ CREATE PROCEDURE arquivar_plano(IN id INT)
 END $$  
 DELIMITER ;
 
-CALL arquivar_plano(6);
+CALL arquivar_plano(7);
 
 select *
 from Plano;
@@ -224,7 +226,7 @@ CREATE PROCEDURE inserir_atividade_plano(IN numAulas INT, IN id_plano INT, IN no
 END $$  
 DELIMITER ;
 
-CALL inserir_atividade_plano(20,2,'Hiit');
+CALL inserir_atividade_plano(12,93,'Core');
 
 select * 
 from Plano_Atividade_Fitness;
@@ -233,7 +235,7 @@ DROP trigger IF EXISTS update_participantesIncrementa
 
 DELIMITER $$
 CREATE TRIGGER update_participantesIncrementa
-AFTER INSERT ON plano_atividade_fitness
+AFTER INSERT ON Plano_Atividade_Fitness
 FOR EACH ROW
 BEGIN
 	UPDATE Atividade_fitness
@@ -250,11 +252,11 @@ CREATE PROCEDURE decrementaInscritos (id_plano INT)
 BEGIN
 	declare contador INT;
 	SET @I := 1;
-	while(@I <= (SELECT MAX(Id_atividade) FROM plano_atividade_fitness)) DO
-        SELECT count(PA.Id_atividade) into contador FROM plano_atividade_fitness AS PA 
+	while(@I <= (SELECT MAX(Id_atividade) FROM Plano_Atividade_Fitness)) DO
+        SELECT count(PA.Id_atividade) into contador FROM Plano_Atividade_Fitness AS PA 
 			where PA.Id_plano = id_plano AND PA.Id_atividade = @I;
 		IF (contador>0) THEN
-			UPDATE Atividade_fitness
+			UPDATE Atividade_Fitness
 			SET Nr_inscritos = Nr_inscritos - 1
 			WHERE Id_atividade =@I ;
         END IF;
@@ -268,7 +270,7 @@ DROP trigger IF EXISTS update_participantesIncrementa;
 
 DELIMITER $$
 CREATE TRIGGER update_participantesIncrementa
-AFTER UPDATE ON plano
+AFTER UPDATE ON Plano
 for each row
 BEGIN
      CALL teste (@K);
@@ -276,7 +278,13 @@ END
 $$
 DELIMITER ;
 
-CALL arquivar_plano(3);
+CALL arquivar_plano(7);
+select *from Plano;
+
+SELECT A.Nome, A.Nr_inscritos FROM Plano AS P
+INNER JOIN Plano_Atividade_Fitness AS PA ON PA.Id_plano = P.Id_plano
+INNER JOIN Atividade_Fitness AS A ON A.Id_atividade = PA.Id_atividade
+WHERE P.Id_plano = 7;
 
 DROP PROCEDURE IF EXISTS aumentarQt_maquina;
 
@@ -292,6 +300,8 @@ END $$
 DELIMITER ;
 
 CALL aumentarQt_maquina('Passadeira', 20);
+
+select *from Maquina;
 
 DROP PROCEDURE IF EXISTS diminuirQt_maquina;
 
