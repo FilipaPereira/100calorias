@@ -174,15 +174,15 @@ INSERT INTO Cliente_Limitacao_Fisica
 	(Id_Cliente, Id_Limitacao)
     VALUES
     ( 1, 1),
-    ( 25, 1),
-    ( 2, 2),
-    ( 4, 3),
-    ( 30, 3),
-    ( 5, 4),
+    ( 1, 8),
+	( 2, 2),
+	( 4, 3),
+	( 5, 4),
     ( 7, 5),
     ( 8, 6),
     ( 10, 7),
-	( 1, 8),
+    ( 25, 1),
+    ( 30, 3),
     ( 30, 8);
 
 INSERT INTO Professor
