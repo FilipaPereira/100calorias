@@ -216,7 +216,8 @@ CREATE PROCEDURE inserir_atividade_plano(IN numAulas INT, IN id_plano INT, IN no
         set @C:=0;
 		SELECT @A:= AF.Id_atividade, @B:= AF.Max_participantes, @C:= AF.Nr_inscritos FROM Atividade_Fitness AS AF where AF.Nome = nome;
 		IF(@B > @C) THEN
-			INSERT INTO Plano_Atividade_Fitness(Nr_aulas, Id_plano, Id_atividade)
+			INSERT INTO Plano_Atividade_Fitness
+				(Nr_aulas, Id_plano, Id_atividade)
 				VALUE (numAulas, id_plano, @A);
 		END IF;
         	if erro then ROLLBACK;
@@ -226,7 +227,7 @@ CREATE PROCEDURE inserir_atividade_plano(IN numAulas INT, IN id_plano INT, IN no
 END $$  
 DELIMITER ;
 
-CALL inserir_atividade_plano(12,93,'Core');
+CALL inserir_atividade_plano(10,45,'Cycling');
 
 select * 
 from Plano_Atividade_Fitness;
@@ -238,7 +239,7 @@ CREATE TRIGGER update_participantesIncrementa
 AFTER INSERT ON Plano_Atividade_Fitness
 FOR EACH ROW
 BEGIN
-	UPDATE Atividade_fitness
+	UPDATE Atividade_Fitness
     SET Nr_inscritos = Nr_inscritos + 1
     WHERE Id_atividade = @A;
 END
