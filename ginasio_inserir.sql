@@ -270,14 +270,14 @@ END
 $$
 DELIMITER ;
 
-DROP trigger IF EXISTS update_participantesIncrementa;
+DROP trigger IF EXISTS update_participantesDecrementa;
 
 DELIMITER $$
-CREATE TRIGGER update_participantesIncrementa
+CREATE TRIGGER update_participantesDecrementa
 AFTER UPDATE ON Plano
 for each row
 BEGIN
-     CALL teste (@K);
+     CALL Decrementa (@K);
 END
 $$
 DELIMITER ;
