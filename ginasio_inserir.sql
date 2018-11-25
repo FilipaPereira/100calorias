@@ -277,7 +277,7 @@ CREATE TRIGGER update_participantesDecrementa
 AFTER UPDATE ON Plano
 for each row
 BEGIN
-     CALL Decrementa (@K);
+     CALL decrementaInscritos(@K);
 END
 $$
 DELIMITER ;
