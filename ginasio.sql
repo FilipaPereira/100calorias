@@ -147,3 +147,18 @@ INNER JOIN Maquina AS M ON M.Id_maquina = AM.Id_maquina
 GROUP BY Tipo, Nr_Maquinas
 ORDER BY Nr_Maquinas DESC
 LIMIT 3;
+
+-- Alunos de uma localidade
+DROP PROCEDURE IF EXISTS clientes_localidade;
+
+DELIMITER $$
+CREATE PROCEDURE clientes_localidade (IN nome_localidade VARCHAR(45)) 
+BEGIN
+SELECT C.Nome AS Cliente FROM Localidade AS L
+INNER JOIN Cliente AS C ON C.Id_localidade = L.Id_localidade
+WHERE L.Nome = nome_localidade
+ORDER BY Cliente;
+END $$
+DELIMITER ;
+
+CALL clientes_localidade('Souto');

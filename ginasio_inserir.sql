@@ -321,3 +321,24 @@ END $$
 DELIMITER ;
 
 CALL diminuirQt_maquina('Passadeira', 20);
+
+-- Altera a quantidade de uma máquina utilizada numa para uma certa atividade
+DROP PROCEDURE IF EXISTS alterarQt_maquinaAtividade;
+
+DELIMITER $$
+CREATE PROCEDURE alterarQt_maquinaAtividade(IN atividade VARCHAR(45), IN maquina VARCHAR(45), IN qt INT)
+	BEGIN
+	SELECT @G:= Atividade_Fitness.Id_atividade, @J:= Maquina.Id_maquina FROM Atividade_Fitness 
+	INNER JOIN Atividade_Fitness_Maquina ON Atividade_Fitness_Maquina.Id_atividade=Atividade_Fitness.Id_atividade
+	INNER JOIN Maquina ON Maquina.Id_maquina = Atividade_Fitness_Maquina.Id_maquina
+	WHERE Atividade_Fitness.Nome = atividade AND  Maquina.Tipo = maquina;
+	UPDATE Atividade_Fitness_Maquina
+	SET Atividade_Fitness_Maquina.Nr_maquinas = qt  
+	WHERE Atividade_Fitness_Maquina.Id_atividade = @G
+	AND Atividade_Fitness_Maquina.Id_maquina = @J; 
+        
+END $$  
+DELIMITER ;
+
+CALL alterarQt_maquinaAtividade('Run', 'Passadeira', 16);
+select *from Atividade_Fitness_Maquina;
