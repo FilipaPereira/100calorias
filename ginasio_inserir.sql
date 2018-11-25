@@ -164,7 +164,10 @@ CREATE PROCEDURE inserir_plano(IN preco DOUBLE, IN datainicio DATE, IN nomeprof 
 		set @A:=0;
 		SELECT @A:= P.Id_professor FROM Professor AS P where P.Nome = nomeprof;
 		set @B:=0;
-		SELECT @B:= C.Id_cliente FROM Cliente AS C where C.Nome = nome;
+		set @E:=0;
+		SELECT @B:= C.Id_cliente, @E:= P.Id_plano FROM Cliente AS C
+		INNER JOIN Plano AS P ON P.Id_cliente = C.Id_cliente
+		where C.Nome = nome AND P.Estado = 'Ativo';
 		INSERT INTO Plano(Preco, Data_inicio, Estado, Id_professor, Id_cliente)
 				VALUE (preco, datainicio, 'Ativo', @A, @B);
         	if erro then ROLLBACK;
