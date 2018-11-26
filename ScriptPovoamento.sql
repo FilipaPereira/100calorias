@@ -201,16 +201,16 @@ INSERT INTO Professor
 INSERT INTO Atividade_Fitness
 	(Max_participantes, Nome, Duracao, Sala, Nr_inscritos, Id_professor)
     VALUES
-	(20, 'Run', 4500, 1, 16, 1),
-    (25, 'Cycling', 4000, 2, 17, 2),
-    (25, 'Step', 4500, 3, 21, 3),
-    (20, 'Core', 4000, 4, 19, 4),
-	(20, 'Pilates', 4500, 5, 14, 3),
-    (20, 'Crossfit', 4000, 6, 19, 5),
-    (25, 'Body Pump', 4500, 2, 22, 9),
-    (20, 'Powerjump', 5000, 4, 17, 6),
-    (25, 'Body Combat', 4000, 3, 19, 7),
-    (20, 'Hiit', 4500, 5, 12, 8);
+	(20, 'Run', 4500, 1, 9, 1),
+    (15, 'Cycling', 4000, 2, 9, 2),
+    (25, 'Step', 4500, 3, 12, 3),
+    (15, 'Core', 4000, 4, 11, 4),
+	(20, 'Pilates', 4500, 5, 9, 3),
+    (20, 'Crossfit', 4000, 6, 11, 5),
+    (25, 'Body Pump', 4500, 2, 12, 9),
+    (20, 'Powerjump', 5000, 4, 11, 6),
+    (25, 'Body Combat', 4000, 3, 9, 7),
+    (20, 'Hiit', 4500, 5, 6, 8);
 
 INSERT INTO Maquina
 	(Tipo, Quantidade)
