@@ -1,12 +1,45 @@
-//Plano
+//Localidade
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///localidade.csv" AS line
+CREATE (l:Localidade { IdLocalidade: TOINTEGER(line[0]),
+Nome: (line[1])})
 
+//Cliente
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///cliente.csv" AS line
+CREATE (c:Cliente { IdCliente: TOINTEGER(line[0]),
+Nome: (line[1]),
+DataNascimento: (line[2]),
+Endereco: (line[3]),
+IdLocalidade: TOINTEGER(line[4])})
+
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///telemovel.csv" AS line
+CREATE (t:Telemovel { IdTelemovel: TOINTEGER(line[0]),
+Tipo: (line[1]),
+Numero: (line[2]),
+IdCliente: TOINTEGER(line[3])})
+
+//Limitacao_fisica
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///limitacao_fisica.csv" AS line
+CREATE (lf: Limitica_Fisica { IdLimiticao: TOINTEGER(line[0]),
+Nome: TOINTEGER(line[1])})
+
+//Cliente_limitacao_fisica
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///cliente_limitacao_fisica.csv" AS line
+CREATE (cf: Cliente_Limitacao_Fisica { IdCliente: TOINTEGER(line[0]),
+IdLimitacao: TOINTEGER(line[2])})
+
+//Plano
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///plano.csv" AS line
 CREATE (p:plano { PlanoID:TOINTEGER (line[0]),
 Preco: TOFLOAT(line[1]),
 DataInicio: (line[2]),
 Estado: (line[3]),
-ClienteID: TOINTEGER(line[4]),
+IdCliente: TOINTEGER(line[4]),
 ProfessorID: TOINTEGER(line[5])})
 
 //Professor
@@ -28,9 +61,28 @@ CREATE (pa:plano_atividade_fitness { IdPlano:TOINTEGER (line[1]),
 IdAtividade:TOINTEGER (line[2]),
 NrAulas: (line[0])})
 
+//Maquina
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///maquina.csv" AS line
+CREATE (m:Maquina { IdMaquina: TOINTEGER(line[0]),
+Tipo: TOINTEGER(line[1]),
+Quantidade: TOINTEGER(line[2])})
+
 //Atividade_Maquina
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///atividade_fitness_maquina.csv" AS line
 CREATE (am:atividade_fitness_maquina { IdAtividade:TOINTEGER (line[1]),
 IdMaquina:TOINTEGER (line[2]),
 NrMaquinas:TOINTEGER (line[0])})
+
+MATCH (c:Cliente),(l:Localidade)
+WHERE c.IdLocalidade = l.IdLocalidade
+CREATE(c)-[r:Localidade]->(l)
+
+MATCH (t:Telemovel),(c:Cliente)
+WHERE t.IdCliente = c.IdCliente 
+CREATE(t)-[r:Pertence]->(c)
+
+MATCH (cf:Cliente_Limitacao_Fisica),(c:Cliente)
+WHERE cf.IdCliente = c.IdCliente 
+CREATE(cf)-[r:Possui]->(c)
