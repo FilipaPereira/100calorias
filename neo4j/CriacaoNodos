@@ -27,12 +27,6 @@ Nome: TOINTEGER(line[1])})
 
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///cliente_limitacao_fisica.csv" AS line
-CREATE (cf: Cliente_Limitacao_Fisica { IdCliente: TOINTEGER(line[0]),
-IdLimitacao: TOINTEGER(line[2])})
-
-
-USING PERIODIC COMMIT
 LOAD CSV FROM "file:///plano.csv" AS line
 CREATE (p:Plano { IdPlano:TOINTEGER (line[0]),
 Preco: TOFLOAT(line[1]),
@@ -87,20 +81,42 @@ NrMaquinas:TOINTEGER (line[0])})
 
 MATCH (c:Cliente),(l:Localidade)
 WHERE c.IdLocalidade = l.IdLocalidade
-CREATE(c)-[r:Localidade]->(l)
+CREATE(c)-[r:Habita]->(l)
 
-MATCH (t:Telemovel),(c:Cliente)
-WHERE t.IdCliente = c.IdCliente
-CREATE(t)-[r:Pertence]->(c)
+MATCH (c:Cliente),(t:Telemovel)
+WHERE c.IdCliente = t.IdCliente
+CREATE(c)-[r:Possui]->(t)
 
-MATCH (cf:Cliente_Limitacao_Fisica),(c:Cliente)
-WHERE cf.IdCliente = c.IdCliente
-CREATE(cf)-[r:Possui]->(c)
+MATCH (p:Professor),(l:Localidade)
+WHERE p.IdLocalidade = l.IdLocalidade
+CREATE(p)-[r:Reside]->(l)
+
+MATCH (p:Professor),(a:Atividade_Fitness)
+WHERE p.IdProfessor = a.IdProfessor
+CREATE(p)-[r:Leciona]->(a)
+
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///cliente_limitacao_fisica.csv" AS line
+MATCH (c:Cliente), (l:Limitacao_Fisica)
+WHERE c.IdCliente = TOINTEGER(line[0]) AND l.IdLimitacao = TOINTEGER(line[1])
+CREATE(c)-[r:Sujeito]->(l)
 
 MATCH (am: Atividade_Fitness_Maquina),(m:Maquina)
 WHERE am.IdMaquina = m.IdMaquina
-CREATE(am)-[r:Possui]->(m)
+CREATE(am)-[r:Utiliza]->(m)
+
+MATCH (a: Atividade_Fitness),(am: Atividade_Fitness_Maquina)
+WHERE a.IdAtividade = am.IdAtividade
+CREATE(a)-[r:Recorre]->(am)
 
 MATCH (pa: Plano_Atividade_Fitness),(p:Plano)
 WHERE pa.IdPlano = p.IdPlano
-CREATE(pa)-[r:Possui]->(p)
+CREATE(pa)-[r:Contida]->(p)
+
+MATCH (a: Atividade_Fitness),(pa: Plano_Atividade_Fitness)
+WHERE a.IdAtividade = pa.IdAtividade
+CREATE(a)-[r:Possui]->(pa)
+
+MATCH (c:Cliente),(p:Plano)
+WHERE c.IdCliente = p.IdCliente
+CREATE(c)-[r:Contem]->(p)
