@@ -35,12 +35,12 @@ IdLimitacao: TOINTEGER(line[2])})
 //Plano
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///plano.csv" AS line
-CREATE (p:plano { PlanoID:TOINTEGER (line[0]),
+CREATE (p:plano { IdPlano:TOINTEGER (line[0]),
 Preco: TOFLOAT(line[1]),
 DataInicio: (line[2]),
 Estado: (line[3]),
 IdCliente: TOINTEGER(line[4]),
-ProfessorID: TOINTEGER(line[5])})
+IdProfessor: TOINTEGER(line[5])})
 
 //Professor
 USING PERIODIC COMMIT
