@@ -1,0 +1,36 @@
+//Plano
+
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///plano.csv" AS line
+CREATE (p:plano { PlanoID:TOINTEGER (line[0]),
+Preco: TOFLOAT(line[1]),
+DataInicio: (line[2]),
+Estado: (line[3]),
+ClienteID: TOINTEGER(line[4]),
+ProfessorID: TOINTEGER(line[5])})
+
+//Professor
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///professor.csv" AS line
+CREATE (p:professor { IdProfessor:TOINTEGER (line[0]),
+Nome: (line[1]),
+Endereco: (line[2]),
+DataNascimento: (line[3]),
+Telemovel: (line[4]),
+Email:(line[5]),
+Estado: (line[6]),
+IdLocalidade: TOINTEGER(line[7])})
+
+//Plano_Atividade
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///plano_atividade_fitness.csv" AS line
+CREATE (pa:plano_atividade_fitness { IdPlano:TOINTEGER (line[1]),
+IdAtividade:TOINTEGER (line[2]),
+NrAulas: (line[0])})
+
+//Atividade_Maquina
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///atividade_fitness_maquina.csv" AS line
+CREATE (am:atividade_fitness_maquina { IdAtividade:TOINTEGER (line[1]),
+IdMaquina:TOINTEGER (line[2]),
+NrMaquinas:TOINTEGER (line[0])})
