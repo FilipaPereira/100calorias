@@ -54,6 +54,17 @@ Email:(line[5]),
 Estado: (line[6]),
 IdLocalidade: TOINTEGER(line[7])})
 
+//Atividade_Fitness
+USING PERIODIC COMMIT
+LOAD CSV FROM "file:///atividade_fitness.csv" AS line
+CREATE (af: Atividade_Fitness { IdAtividade: TOINTEGER (line[0]),
+MaxParticipantes: TOINTEGER(line[1]),
+Nome: (line[2]),
+Duração: (line[3]),
+Sala: TOINTEGER(line[4]),
+NrIncritos: TOINTEGER(line[5]),
+IdProfessor: TOINTEGER(line[6])})
+
 //Plano_Atividade
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///plano_atividade_fitness.csv" AS line
@@ -80,9 +91,17 @@ WHERE c.IdLocalidade = l.IdLocalidade
 CREATE(c)-[r:Localidade]->(l)
 
 MATCH (t:Telemovel),(c:Cliente)
-WHERE t.IdCliente = c.IdCliente 
+WHERE t.IdCliente = c.IdCliente
 CREATE(t)-[r:Pertence]->(c)
 
 MATCH (cf:Cliente_Limitacao_Fisica),(c:Cliente)
-WHERE cf.IdCliente = c.IdCliente 
+WHERE cf.IdCliente = c.IdCliente
 CREATE(cf)-[r:Possui]->(c)
+
+MATCH (am: Atividade_Fitness_Maquina),(m:Maquina)
+WHERE am.IdMaquina = m.IdMaquina
+CREATE(am)-[r:Possui]->(m)
+
+MATCH (pa: Plano_Atividade_Fitness),(p:Plano)
+WHERE pa.IdPlano = p.IdPlano
+CREATE(pa)-[r:Possui]->(p)
