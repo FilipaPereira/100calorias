@@ -14,6 +14,10 @@ RETURN p.Nome
 MATCH(a:Atividade_Fitness{IdAtividade:7})
 RETURN a.Sala
 
+-- RE 17 -> Consultar os planos realizados por um dado cliente
+MATCH(c:Cliente{Nome:"Ana Maria"})-[:Contem]->(p:Plano)
+RETURN p.IdPlano, p.Preco, p.DataInicio, p.Estado
+
 -- RE 18 -> Identificar o Top 3 de clientes com maior número de planos associados
 MATCH(c:Cliente)
 WITH c, size((c)-[:Contem]->()) as NrPlanos
@@ -39,7 +43,6 @@ MATCH(p:Professor)
 WITH p, size((p)-[:Elabora]->()) as NrPlanos
 RETURN p.Nome, NrPlanos
 ORDER BY NrPlanos DESC
-LIMIT 1
 
 -- RE 22 -> Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
 MATCH(a:Atividade_Fitness{Nome:"Run"})-[:Possui]->(pa:Plano_Atividade_Fitness)-[:Contida]->(p:Plano)<-[:Contem]-(c:Cliente)
@@ -55,12 +58,24 @@ RETURN a.Nome, NrAulas
 ORDER BY NrAulas DESC
 LIMIT 1
 
-//PROCEDURES N SEI COMO FICA
--- RE 17 -> Consultar os planos realizados por um dado cliente
-MATCH 
-
 -- RE 24 -> Devolver os planos elaborados por um professor ordenados pelo preço, bem como o cliente ao qual o plano foi atribuído
+MATCH(p:Professor{Nome:"Andre Gonçalves"})-[:Elabora]->(pl:Plano)<-[:Contem]-(c:Cliente)
+RETURN pl.Preco, c.Nome as Cliente
+ORDER BY pl.Preco DESC
+
 -- RE 25 -> Ver quais os planos que ja foram realizados por um dado cliente com determinado estado (ativo ou inativo)
--- RE 26 -> As atividades fitness lecionadas por um professor 
+MATCH(c:Cliente{Nome:"Marco Paulo"})-[:Contem]->(p:Plano{Estado:"Inativo"})
+RETURN p.IdPlano, p.Preco, p.DataInicio
+ORDER BY p.IdPlano
+
+-- RE 26 -> As atividades fitness lecionadas por um professor
+MATCH(p:Professor{Nome:"Andre Gonçalves"})-[:Leciona]->(a: Atividade_Fitness)
+RETURN a.Nome
+
 -- RE 27 -> Nomes e contactos dos alunos que frequentam certa atividade
+MATCH(t:Telemovel)<-[:Indica]-(c:Cliente)-[:Contem]->(p:Plano{Estado:"Ativo"})<-[:Contida]-(pa:Plano_Atividade_Fitness)<-[:Possui]-(a:Atividade_Fitness{Nome:"Cycling"})
+RETURN c.Nome, t.Numero, t.Tipo
+
 -- RE 28 -> Alunos de uma localidade
+MATCH(c:Cliente)-[:Habita]->(l:Localidade{Nome:"Souto"})
+RETURN c.Nome
