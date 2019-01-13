@@ -1,4 +1,4 @@
-//Localidade
+﻿//Localidade
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///localidade.csv" AS line
 CREATE (l:Localidade { IdLocalidade: TOINTEGER(line[0]),
@@ -69,7 +69,7 @@ NrAulas: TOINTEGER(line[0])})
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///maquina.csv" AS line
 CREATE (m:Maquina { IdMaquina: TOINTEGER(line[0]),
-Tipo: TOINTEGER(line[1]),
+Tipo: (line[1]),
 Quantidade: TOINTEGER(line[2])})
 
 
