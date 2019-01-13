@@ -95,6 +95,10 @@ MATCH (p:Professor),(a:Atividade_Fitness)
 WHERE p.IdProfessor = a.IdProfessor
 CREATE(p)-[r:Leciona]->(a)
 
+MATCH (p:Professor),(pl:Plano)
+WHERE p.IdProfessor = pl.IdProfessor
+CREATE(p)-[r:Elabora]->(pl)
+
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///cliente_limitacao_fisica.csv" AS line
 MATCH (c:Cliente), (l:Limitacao_Fisica)
