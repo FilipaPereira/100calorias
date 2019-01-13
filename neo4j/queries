@@ -42,14 +42,14 @@ ORDER BY NrPlanos DESC
 LIMIT 1
 
 -- RE 22 -> Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
-MATCH(a:Atividade_Fitness{Nome:"Run"})-[r:Possui]->(pa:Plano_Atividade_Fitness)-[r:Contida]->(p:Plano)<-[r:Contem]-(c:Cliente)
+MATCH(a:Atividade_Fitness{Nome:"Run"})-[:Possui]->(pa:Plano_Atividade_Fitness)-[:Contida]->(p:Plano)<-[:Contem]-(c:Cliente)
 WITH c, sum(pa.NrAulas) as NrAulas
 RETURN c.Nome, NrAulas 
 ORDER BY NrAulas DESC
 LIMIT 3
 
 -- RE 23 -> Atividade fitness mais frequentada por um determinado aluno
-MATCH(a:Atividade_Fitness)-[r:Possui]->(pa:Plano_Atividade_Fitness)-[r:Contida]->(p:Plano)<-[r:Contem]-(c:Cliente{Nome:"Carolina Pinto"})
+MATCH(a:Atividade_Fitness)-[:Possui]->(pa:Plano_Atividade_Fitness)-[:Contida]->(p:Plano)<-[:Contem]-(c:Cliente{Nome:"Carolina Pinto"})
 WITH a, sum(pa.NrAulas) as NrAulas
 RETURN a.Nome, NrAulas
 ORDER BY NrAulas DESC
