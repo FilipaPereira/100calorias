@@ -1,0 +1,64 @@
+-- RE 13 -> Obter o numero total de clientes do ginasio
+MATCH(c:Cliente)
+RETURN count(*) as NrClientes
+
+-- RE 14 -> Verificar o numero de professores que lecionam no ginasio
+MATCH(p:Professor)
+RETURN count(*) as NrProfessores
+
+-- RE 15 -> Saber que professor leciona certa atividade fisica 
+MATCH (p:Professor)-[r:Leciona]->(a:Atividade_Fitness{Nome:"Step"}) 
+RETURN p.Nome
+
+-- RE 16 -> Conhecer a sala onde a atividade é lecionada
+MATCH(a:Atividade_Fitness{IdAtividade:7})
+RETURN a.Sala
+
+-- RE 18 -> Identificar o Top 3 de clientes com maior número de planos associados
+MATCH(c:Cliente)
+WITH c, size((c)-[:Contem]->()) as NrPlanos
+RETURN c.Nome, NrPlanos
+ORDER BY NrPlanos DESC
+LIMIT 3
+
+-- RE 19 -> Reconhecer o professor que lecionou mais atividades
+MATCH(p:Professor)
+WITH p, size((p)-[:Leciona]->()) as NrAtividades
+RETURN p.Nome, NrAtividades
+ORDER BY NrAtividades DESC
+LIMIT 1
+
+-- RE 20 -> Obter o Top 3 das atividades com mais alunos inscritos
+MATCH(a:Atividade_Fitness)
+RETURN a.Nome, a.NrInscritos
+ORDER BY a.NrInscritos DESC
+LIMIT 3
+
+-- RE 21 -> Identificar o número de planos elaborados por cada professor
+MATCH(p:Professor)
+WITH p, size((p)-[:Elabora]->()) as NrPlanos
+RETURN p.Nome, NrPlanos
+ORDER BY NrPlanos DESC
+LIMIT 1
+
+-- RE 22 -> Verificar o Top 3 dos alunos com maior número de aulas de uma determinada atividade fitness
+MATCH(a:Atividade_Fitness{Nome:"Run"})-[r:Possui]->(pa:Plano_Atividade_Fitness)-[r:Contida]->(p:Plano)<-[r:Contem]-(c:Cliente)
+WITH c, sum(pa.NrAulas) as NrAulas
+RETURN c.Nome, NrAulas 
+ORDER BY NrAulas DESC
+LIMIT 3
+
+-- RE 23 -> Atividade fitness mais frequentada por um determinado aluno
+MATCH(a:Atividade_Fitness)-[r:Possui]->(pa:Plano_Atividade_Fitness)-[r:Contida]->(p:Plano)<-[r:Contem]-(c:Cliente{Nome:"Carolina Pinto"})
+WITH a, sum(pa.NrAulas) as NrAulas
+RETURN a.Nome, NrAulas
+ORDER BY NrAulas DESC
+LIMIT 1
+
+//PROCEDURES N SEI COMO FICA
+-- RE 17 -> Consultar os planos realizados por um dado cliente
+-- RE 24 -> Devolver os planos elaborados por um professor ordenados pelo preço, bem como o cliente ao qual o plano foi atribuído
+-- RE 25 -> Ver quais os planos que ja foram realizados por um dado cliente com determinado estado (ativo ou inativo)
+-- RE 26 -> As atividades fitness lecionadas por um professor 
+-- RE 27 -> Nomes e contactos dos alunos que frequentam certa atividade
+-- RE 28 -> Alunos de uma localidade
