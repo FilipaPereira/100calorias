@@ -57,6 +57,8 @@ LIMIT 1
 
 //PROCEDURES N SEI COMO FICA
 -- RE 17 -> Consultar os planos realizados por um dado cliente
+MATCH 
+
 -- RE 24 -> Devolver os planos elaborados por um professor ordenados pelo preço, bem como o cliente ao qual o plano foi atribuído
 -- RE 25 -> Ver quais os planos que ja foram realizados por um dado cliente com determinado estado (ativo ou inativo)
 -- RE 26 -> As atividades fitness lecionadas por um professor 
