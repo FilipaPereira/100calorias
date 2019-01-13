@@ -22,7 +22,7 @@ IdCliente: TOINTEGER(line[3])})
 
 USING PERIODIC COMMIT
 LOAD CSV FROM "file:///limitacao_fisica.csv" AS line
-CREATE (lf: Limitica_Fisica { IdLimiticao: TOINTEGER(line[0]),
+CREATE (lf: Limitacao_Fisica { IdLimiticao: TOINTEGER(line[0]),
 Nome: TOINTEGER(line[1])})
 
 
@@ -55,7 +55,7 @@ MaxParticipantes: TOINTEGER(line[1]),
 Nome: (line[2]),
 Duração: (line[3]),
 Sala: TOINTEGER(line[4]),
-NrIncritos: TOINTEGER(line[5]),
+NrInscritos: TOINTEGER(line[5]),
 IdProfessor: TOINTEGER(line[6])})
 
 
@@ -63,7 +63,7 @@ USING PERIODIC COMMIT
 LOAD CSV FROM "file:///plano_atividade_fitness.csv" AS line
 CREATE (pa:Plano_Atividade_Fitness { IdPlano:TOINTEGER (line[1]),
 IdAtividade:TOINTEGER (line[2]),
-NrAulas: (line[0])})
+NrAulas: TOINTEGER(line[0])})
 
 
 USING PERIODIC COMMIT
