@@ -1,75 +1,76 @@
 ﻿USING PERIODIC COMMIT
-LOAD CSV FROM "file:///localidade.csv" AS line
-CREATE (l:Localidade { IdLocalidade: TOINTEGER(line[0]),
-Nome: (line[1])});
+LOAD CSV WITH HEADERS FROM "file:///localidade.csv" AS line
+CREATE (l:Localidade {Numero: TOINTEGER(line.IdLocalidade),
+Nome: line.Nome});
+
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///cliente.csv" AS line
-CREATE (c:Cliente { IdCliente: TOINTEGER(line[0]),
-Nome: (line[1]),
-DataNascimento: (line[2]),
-Endereco: (line[3]),
-IdLocalidade: TOINTEGER(line[4])});
+LOAD CSV WITH HEADERS FROM "file:///cliente.csv" AS line
+CREATE (c:Cliente { IdCliente: TOINTEGER(line.IdCliente),
+Nome: (line.Nome),
+DataNascimento: (line.DataNascimento),
+Endereco: (line.Endereco),
+IdLocalidade: TOINTEGER(line.IdLocalidade)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///telemovel.csv" AS line
-CREATE (t:Telemovel { IdTelemovel: TOINTEGER(line[0]),
-Tipo: (line[1]),
-Numero: (line[2]),
-IdCliente: TOINTEGER(line[3])});
+LOAD CSV WITH HEADERS FROM "file:///telemovel.csv" AS line
+CREATE (t:Telemovel { IdTelemovel: TOINTEGER(line.IdTelemovel),
+Tipo: (line.Tipo),
+Numero: (line.Numero),
+IdCliente: TOINTEGER(line.IdCliente)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///limitacao_fisica.csv" AS line
-CREATE (lf: Limitacao_Fisica { IdLimiticao: TOINTEGER(line[0]),
-Nome: TOINTEGER(line[1])});
+LOAD CSV WITH HEADERS FROM "file:///limitacao_fisica.csv" AS line
+CREATE (lf: Limitacao_Fisica { IdLimitacao: TOINTEGER(line.IdLimitacao),
+Nome: (line.Nome)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///plano.csv" AS line
-CREATE (pl:Plano { IdPlano:TOINTEGER (line[0]),
-Preco: TOFLOAT(line[1]),
-DataInicio: (line[2]),
-Estado: (line[3]),
-IdCliente: TOINTEGER(line[4]),
-IdProfessor: TOINTEGER(line[5])});
+LOAD CSV WITH HEADERS FROM "file:///plano.csv" AS line
+CREATE (pl:Plano { IdPlano:TOINTEGER (line.IdPlano),
+Preco: TOFLOAT(line.Preco),
+DataInicio: (line.DataInicio),
+Estado: (line.Estado),
+IdCliente: TOINTEGER(line.IdCliente),
+IdProfessor: TOINTEGER(line.IdProfessor)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///professor.csv" AS line
-CREATE (p:Professor { IdProfessor:TOINTEGER (line[0]),
-Nome: (line[1]),
-Endereco: (line[2]),
-DataNascimento: (line[3]),
-Telemovel: (line[4]),
-Email:(line[5]),
-Estado: (line[6]),
-IdLocalidade: TOINTEGER(line[7])});
+LOAD CSV WITH HEADERS FROM "file:///professor.csv" AS line
+CREATE (p:Professor { IdProfessor:TOINTEGER (line.IdProfessor),
+Nome: (line.Nome),
+Endereco: (line.Endereco),
+DataNascimento: (line.DataNascimento),
+Telemovel: (line.Telemovel),
+Email:(line.Email),
+Estado: (line.Estado),
+IdLocalidade: TOINTEGER(line.IdLocalidade)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///atividade_fitness.csv" AS line
-CREATE (af: Atividade_Fitness { IdAtividade: TOINTEGER (line[0]),
-MaxParticipantes: TOINTEGER(line[1]),
-Nome: (line[2]),
-Duração: (line[3]),
-Sala: TOINTEGER(line[4]),
-NrInscritos: TOINTEGER(line[5]),
-IdProfessor: TOINTEGER(line[6])});
+LOAD CSV WITH HEADERS FROM "file:///atividade_fitness.csv" AS line
+CREATE (af: Atividade_Fitness { IdAtividade: TOINTEGER (line.IdAtividade),
+MaxParticipantes: TOINTEGER(line.MaxParticipantes),
+Nome: (line.Nome),
+Duracao: (line.Duracao),
+Sala: TOINTEGER(line.Sala),
+NrInscritos: TOINTEGER(line.NrInscritos),
+IdProfessor: TOINTEGER(line.IdProfessor)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///plano_atividade_fitness.csv" AS line
-CREATE (pa:Plano_Atividade_Fitness { IdPlano:TOINTEGER (line[1]),
-IdAtividade:TOINTEGER (line[2]),
-NrAulas: TOINTEGER(line[0])});
+LOAD CSV WITH HEADERS FROM "file:///plano_atividade_fitness.csv" AS line
+CREATE (pa:Plano_Atividade_Fitness { IdPlano:TOINTEGER (line.IdPlano),
+IdAtividade:TOINTEGER (line.IdAtividade),
+NrAulas: TOINTEGER(line.NrAulas)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///maquina.csv" AS line
-CREATE (m:Maquina { IdMaquina: TOINTEGER(line[0]),
-Tipo: (line[1]),
-Quantidade: TOINTEGER(line[2])});
+LOAD CSV WITH HEADERS FROM "file:///maquina.csv" AS line
+CREATE (m:Maquina { IdMaquina: TOINTEGER(line.IdMaquina),
+Tipo: (line.Tipo),
+Quantidade: TOINTEGER(line.Quantidade)});
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///atividade_fitness_maquina.csv" AS line
-CREATE (am:Atividade_Fitness_Maquina { IdAtividade:TOINTEGER (line[1]),
-IdMaquina:TOINTEGER (line[2]),
-NrMaquinas:TOINTEGER (line[0])});
+LOAD CSV WITH HEADERS FROM "file:///atividade_fitness_maquina.csv" AS line
+CREATE (am:Atividade_Fitness_Maquina { IdAtividade:TOINTEGER (line.IdAtividade),
+IdMaquina:TOINTEGER (line.IdMaquina),
+NrMaquinas:TOINTEGER (line.Nr_Maquinas)});
 
 MATCH (c:Cliente),(l:Localidade)
 WHERE c.IdLocalidade = l.IdLocalidade
