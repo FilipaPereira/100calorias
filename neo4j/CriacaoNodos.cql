@@ -1,6 +1,6 @@
 ﻿USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///localidade.csv" AS line
-CREATE (l:Localidade {Numero: TOINTEGER(line.IdLocalidade),
+CREATE (l:Localidade {IdLocalidade: TOINTEGER(line.IdLocalidade),
 Nome: line.Nome});
 
 
