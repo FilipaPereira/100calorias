@@ -14,7 +14,7 @@ SELECT A.Sala FROM Atividade_Fitness AS A
 WHERE A.Id_atividade = 7;
 
 -- RE 17 -> Consultar os planos realizados por um dado cliente
-DROP PROCEDURE IF EXISTS planos_cliente
+DROP PROCEDURE IF EXISTS planos_cliente;
 
 DELIMITER $$
 CREATE PROCEDURE planos_cliente (IN nome_cliente VARCHAR(45)) 
@@ -89,7 +89,7 @@ DELIMITER ;
 CALL planos_professor ('Andre Gonçalves');
 
 -- RE 25 -> Ver quais os planos que ja foram realizados por um dado cliente com determinado estado (ativo ou inativo)
-DROP PROCEDURE IF EXISTS estado_planos
+DROP PROCEDURE IF EXISTS estado_planos;
 
 DELIMITER $$
 CREATE PROCEDURE estado_planos (IN nome_cliente VARCHAR(45), IN estado VARCHAR(45)) 
@@ -118,7 +118,7 @@ DELIMITER ;
 CALL atividades_professor ('Andre Gonçalves');
 
 -- RE 27 -> Nomes e contactos dos alunos que frequentam certa atividade
-DROP PROCEDURE IF EXISTS alunos_atividade
+DROP PROCEDURE IF EXISTS alunos_atividade;
 
 DELIMITER $$
 CREATE PROCEDURE alunos_atividade (IN nome_atividade VARCHAR(45)) 
