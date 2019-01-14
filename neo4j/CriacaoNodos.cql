@@ -93,10 +93,10 @@ WHERE p.IdProfessor = pl.IdProfessor
 CREATE(p)-[r:Elabora]->(pl);
 
 USING PERIODIC COMMIT
-LOAD CSV FROM "file:///cliente_limitacao_fisica.csv" AS line
-MATCH (c:Cliente), (l:Limitacao_Fisica)
-WHERE c.IdCliente = TOINTEGER(line[0]) AND l.IdLimitacao = TOINTEGER(line[1])
-CREATE(c)-[r:Sujeito]->(l);
+LOAD CSV WITH HEADERS FROM "file:///cliente_limitacao_fisica.csv" AS line
+MATCH (c:Cliente {IdCliente: TOINTEGER(line.IdCliente)})
+MATCH (l:Limitacao_Fisica {IdLimitacao: TOINTEGER(line.IdLimitacao)})
+MERGE (c)-[r:Sujeito]->(l);
 
 MATCH (am: Atividade_Fitness_Maquina),(m:Maquina)
 WHERE am.IdMaquina = m.IdMaquina
