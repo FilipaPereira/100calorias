@@ -1,9 +1,10 @@
-﻿USING PERIODIC COMMIT
+﻿CREATE CONSTRAINT ON (l:Localidade) ASSERT l.id IS UNIQUE;
+USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///localidade.csv" AS line
 CREATE (l:Localidade {IdLocalidade: TOINTEGER(line.IdLocalidade),
 Nome: line.Nome});
 
-
+CREATE CONSTRAINT ON (c:Cliente) ASSERT c.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///cliente.csv" AS line
 CREATE (c:Cliente { IdCliente: TOINTEGER(line.IdCliente),
@@ -12,6 +13,7 @@ DataNascimento: (line.DataNascimento),
 Endereco: (line.Endereco),
 IdLocalidade: TOINTEGER(line.IdLocalidade)});
 
+CREATE CONSTRAINT ON (t:Telemovel) ASSERT t.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///telemovel.csv" AS line
 CREATE (t:Telemovel { IdTelemovel: TOINTEGER(line.IdTelemovel),
@@ -19,11 +21,13 @@ Tipo: (line.Tipo),
 Numero: (line.Numero),
 IdCliente: TOINTEGER(line.IdCliente)});
 
+CREATE CONSTRAINT ON (lf:Limitacao_Fisica) ASSERT lf.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///limitacao_fisica.csv" AS line
 CREATE (lf: Limitacao_Fisica { IdLimitacao: TOINTEGER(line.IdLimitacao),
 Nome: (line.Nome)});
 
+CREATE CONSTRAINT ON (pl:Plano) ASSERT pl.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///plano.csv" AS line
 CREATE (pl:Plano { IdPlano:TOINTEGER (line.IdPlano),
@@ -33,6 +37,7 @@ Estado: (line.Estado),
 IdCliente: TOINTEGER(line.IdCliente),
 IdProfessor: TOINTEGER(line.IdProfessor)});
 
+CREATE CONSTRAINT ON (p:Professor) ASSERT p.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///professor.csv" AS line
 CREATE (p:Professor { IdProfessor:TOINTEGER (line.IdProfessor),
@@ -44,6 +49,7 @@ Email:(line.Email),
 Estado: (line.Estado),
 IdLocalidade: TOINTEGER(line.IdLocalidade)});
 
+CREATE CONSTRAINT ON (a:Atividade_Fitness) ASSERT a.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///atividade_fitness.csv" AS line
 CREATE (af: Atividade_Fitness { IdAtividade: TOINTEGER (line.IdAtividade),
@@ -60,6 +66,7 @@ CREATE (pa:Plano_Atividade_Fitness { IdPlano:TOINTEGER (line.IdPlano),
 IdAtividade:TOINTEGER (line.IdAtividade),
 NrAulas: TOINTEGER(line.NrAulas)});
 
+CREATE CONSTRAINT ON (m:Maquina) ASSERT m.id IS UNIQUE;
 USING PERIODIC COMMIT
 LOAD CSV WITH HEADERS FROM "file:///maquina.csv" AS line
 CREATE (m:Maquina { IdMaquina: TOINTEGER(line.IdMaquina),
