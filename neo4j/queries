@@ -74,7 +74,7 @@ RETURN a.Nome AS Nome
 
 -- RE 27 -> Nomes e contactos dos alunos que frequentam certa atividade
 MATCH(t:Telemovel)<-[:Indica]-(c:Cliente)-[:Contem]->(p:Plano{Estado:"Ativo"})<-[:Contida]-(pa:Plano_Atividade_Fitness)<-[:Possui]-(a:Atividade_Fitness{Nome:"Cycling"})
-RETURN c.Nome AS Nome, t.Numero AS Numero, t.Tipo AS Tip
+RETURN c.Nome AS Nome, t.Numero AS Numero, t.Tipo AS Tipo
 
 -- RE 28 -> Alunos de uma localidade
 MATCH(c:Cliente)-[:Habita]->(l:Localidade{Nome:"Souto"})
